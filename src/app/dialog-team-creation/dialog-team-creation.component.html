@@ -1,0 +1,16 @@
+<label mat-dialog-title>
+  Nom du nouveau groupe
+  <mat-form-field class="full-width">
+    <input matInput [(ngModel)] = "newteam.name" placeholder="name">
+  </mat-form-field>
+</label>
+
+<mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="newteam">
+    OK
+  </button>
+
+  <button mat-dialog-close>
+    Annuler
+  </button>
+</mat-dialog-actions>

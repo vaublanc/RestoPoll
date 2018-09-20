@@ -1,0 +1,22 @@
+<mat-grid-list cols="1" rowHeight="100px" gutterSize="10px">
+  <mat-grid-tile *ngFor="let team of teams">
+    <button mat-raised-button
+            class="team"
+            (click)="navigate(team.id)">
+      {{team.name}}
+    </button>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <button mat-raised-button
+            (click)="openDialog()"
+            class="team"
+            [class.first]="teams.length === 0"
+            [class.new]="teams.length > 0">
+      <label [ngStyle]="{
+        'font-size':teams.length > 0 ? 'xx-large' : 'x-large'
+      }">
+          {{addTeamButtonName}}
+      </label>
+    </button>
+  </mat-grid-tile>
+</mat-grid-list>
