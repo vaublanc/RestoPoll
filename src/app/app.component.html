@@ -6,12 +6,14 @@
 <router-outlet></router-outlet>
 
 <button mat-raised-button
-        (click)="goBack()">
+        (click)="goBack()"
+        class="HomePageButton">
   Revenir à la page précédente
 </button>
 
 <button mat-raised-button
-        routerLink="/home-page">
+        routerLink="/team-list"
+        class="HomePageButton">
   Revenir au menu
 </button>
 

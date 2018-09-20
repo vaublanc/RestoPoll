@@ -1,5 +1,5 @@
-import { Component, Inject, Input } from '@angular/core';
-import {Team} from '../_entities/team';
+import { Component, Inject } from '@angular/core';
+import {Team} from '../shared/team';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 @Component({

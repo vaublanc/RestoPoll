@@ -1,0 +1,13 @@
+<label mat-dialog-title>
+  Etes-vous sûr de vouloir supprimer le groupe {{deletedTeam.name}} ?
+</label>
+
+<mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="deletedTeam">
+      OK
+    </button>
+
+    <button mat-dialog-close>
+      Annuler
+    </button>
+  </mat-dialog-actions>

@@ -1,0 +1,26 @@
+<mat-grid-list cols="1" rowHeight="100px" gutterSize="10px">
+  <ng-container *ngIf="teams && teams.length">
+    <ng-container *ngFor="let team of teams">
+      <mat-grid-tile>
+        <button mat-raised-button
+                class="team"
+                (click)="navigationService.navigate('/team/', team.id)">
+          {{team.name}}
+        </button>
+      </mat-grid-tile>
+    </ng-container>
+  </ng-container>
+  <mat-grid-tile>
+    <button mat-raised-button
+            (click)="openDialog()"
+            class="team"
+            [class.first]="!teams.length"
+            [class.new]="teams.length">
+      <label [ngStyle]="{
+        'font-size':teams.length > 0 ? 'xx-large' : 'x-large'
+      }">
+          {{addTeamButtonName}}
+      </label>
+    </button>
+  </mat-grid-tile>
+</mat-grid-list>

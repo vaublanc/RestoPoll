@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {HomePageComponent} from './home-page/home-page.component';
-import { TeamsComponent } from './teams/teams.component';
+import { TeamListComponent } from './teams/team-list/team-list.component';
+import { TeamComponent } from './teams/team/team.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: '/home-page', pathMatch: 'full'},
-  {path: 'home-page', component: HomePageComponent},
-  {path: 'teams/:id', component: TeamsComponent}
+  {path: '', redirectTo: '/team-list', pathMatch: 'full'},
+  {path: 'team-list', component: TeamListComponent},
+  {path: 'team/:id', component: TeamComponent}
 ];
 
 @NgModule({
@@ -16,6 +16,6 @@ const routes: Routes = [
 export class AppRoutingModule {}
 
 export const routedComponents = [
-  HomePageComponent,
-  TeamsComponent
+  TeamListComponent,
+  TeamComponent
 ];
