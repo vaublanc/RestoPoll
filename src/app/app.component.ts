@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
-import { Title } from './title';
+import { Globals } from './core/globals';
+import { Constants } from './core/constants';
 
 @Component({
   selector: 'app-root',
@@ -9,15 +9,13 @@ import { Title } from './title';
 })
 export class AppComponent implements OnInit {
 
+  homePageTitle = Constants.homePageTitle;
+
   constructor(
-    private location: Location,
-    public title: Title
+    public globals: Globals,
   ) { }
 
   ngOnInit() {
-  }
-
-  goBack(): void {
-    this.location.back();
+    this.globals.isHomePage = true;
   }
 }

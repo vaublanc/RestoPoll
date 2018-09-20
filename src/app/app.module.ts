@@ -1,13 +1,18 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCheckboxModule, MatDialogModule, MatInputModule, MatGridListModule} from '@angular/material';
+import { MatButtonModule,
+          MatCheckboxModule,
+          MatDialogModule,
+          MatInputModule,
+          MatGridListModule,
+          MatProgressSpinnerModule} from '@angular/material';
 import { AppRoutingModule, routedComponents } from './app-routing.module';
 import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
-import { Title } from './title';
+import { Globals } from './core/globals';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataTeamService } from './teams/shared/in-memory-data-team.service';
+import { InMemoryDataService } from './core/in-memory-data.service';
 
 
 import { AppComponent } from './app.component';
@@ -34,17 +39,18 @@ import { DialogTeamSuppressionComponent } from './teams/dialog-team-suppression/
     HttpClientModule,
     HttpClientInMemoryWebApiModule,
     FormsModule,
+    MatProgressSpinnerModule,
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
     // Remove it when a real server is ready to receive requests.
     HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataTeamService, { dataEncapsulation: false })
+      InMemoryDataService, { dataEncapsulation: false })
   ],
   entryComponents: [
     DialogTeamCreationComponent,
     DialogTeamSuppressionComponent
   ],
-  providers: [Title],
+  providers: [Globals],
   bootstrap: [
     AppComponent,
   ],

@@ -1,3 +1,7 @@
 .HomePageButton {
   margin: 15px
 }
+
+.mat-spinner{
+  left: calc(50% - 50px);
+}

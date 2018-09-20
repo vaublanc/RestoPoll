@@ -1,19 +1,20 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Team } from '../shared/team';
 import { MatDialog } from '@angular/material';
 import { DialogTeamCreationComponent } from '../dialog-team-creation/dialog-team-creation.component';
 import { UUID } from 'angular2-uuid';
 import { Router } from '@angular/router';
-import { Title } from '../../title';
+import { Globals } from '../../core/globals';
 import { TeamService } from '../shared/team.service';
 import { NavigationService } from '../../core/navigation.service';
+import { Constants } from '../../core/constants';
 
 @Component({
   selector: 'app-team-list',
   templateUrl: './team-list.component.html',
   styleUrls: ['./team-list.component.scss']
 })
-export class TeamListComponent implements OnInit {
+export class TeamListComponent implements OnInit, OnDestroy {
 
   teams: Team[] = [];
   newTeam: Team;
@@ -22,15 +23,22 @@ export class TeamListComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     public router: Router,
-    private title: Title,
+    public globals: Globals,
     private teamService: TeamService,
     public navigationService: NavigationService
   ) { }
 
   ngOnInit() {
-    this.title.name = 'Où allez vous manger aujourd\'hui ?';
+    this.globals.componentLoaded = false;
+    this.globals.title = Constants.homePageTitle;
+    this.globals.isHomePage = true;
 
     this.getTeams();
+  }
+
+  ngOnDestroy() {
+    this.globals.isHomePage = false;
+    this.globals.componentLoaded = false;
   }
 
 
@@ -61,7 +69,7 @@ export class TeamListComponent implements OnInit {
           } else {
             this.addTeamButtonName = '\+';
           }
-      });
+      }, null, () => this.globals.componentLoaded = true);
   }
 
   addTeam(teamToSave: Team): void {

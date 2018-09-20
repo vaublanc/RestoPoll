@@ -1,21 +1,24 @@
-<ng-container *ngIf="currentTeam">
-  <form #teamForm = "ngForm">
-    <label>Nom de votre groupe:
-      <input name="teamNameInput" [(ngModel)]="currentTeam.name" required>
-    </label>
-  </form>
+<ng-container *ngIf="globals.componentLoaded">
+  <ng-container *ngIf="currentTeam">
+    <form #teamForm = "ngForm">
+      <label>Nom de votre groupe:
+        <input name="teamNameInput" [(ngModel)]="currentTeam.name" required>
+      </label>
+    </form>
 
-  <div class="teamButton">
-    <button [disabled]="!teamForm.dirty || teamForm.invalid"
-            (click)="save()">
-      Enregistrer vos modifications
-    </button>
-  </div>
-  <div class="teamButton">
-    <button mat-raised-button
-            (click)="openDialog()">
-      Supprimer ce groupe
-    </button>
-  </div>
+    <div class="teamButton">
+      <button [disabled]="!teamForm.dirty || teamForm.invalid"
+              (click)="save()">
+        Enregistrer vos modifications
+      </button>
+    </div>
+    <div class="teamButton">
+      <button mat-raised-button
+              (click)="openDialog()">
+        Supprimer ce groupe
+      </button>
+    </div>
+  </ng-container>
 </ng-container>
+
 

@@ -1,33 +1,37 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Team } from '../shared/team';
 import { ActivatedRoute } from '@angular/router';
-import { Title } from '../../title';
+import { Globals } from '../../core/globals';
 import { TeamService } from '../shared/team.service';
 import { NavigationService } from '../../core/navigation.service';
-import { MatDialog } from '../../../../node_modules/@angular/material';
+import { MatDialog } from '@angular/material';
 import { DialogTeamSuppressionComponent } from '../dialog-team-suppression/dialog-team-suppression.component';
-import { flatMap, map, tap } from '../../../../node_modules/rxjs/operators';
-import { of } from '../../../../node_modules/rxjs';
+import { flatMap } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-team',
   templateUrl: './team.component.html',
   styleUrls: ['./team.component.scss']
 })
-export class TeamComponent implements OnInit {
+export class TeamComponent implements OnInit, OnDestroy {
 
   currentTeam: Team;
 
   constructor(
     public dialog: MatDialog,
     private route: ActivatedRoute,
-    private title: Title,
+    public globals: Globals,
     private teamService: TeamService,
     private navigationService: NavigationService
   ) { }
 
   ngOnInit() {
     this.getTeam();
+  }
+
+  ngOnDestroy() {
+    this.globals.componentLoaded = false;
   }
 
   openDialog(): void {
@@ -56,12 +60,12 @@ export class TeamComponent implements OnInit {
 
     this.teamService.getTeam(id).subscribe(teamReturned => {
       this.currentTeam = teamReturned;
-      this.title.name = 'Groupe ' + this.currentTeam.name;
-    });
+      this.globals.title = 'Groupe ' + this.currentTeam.name;
+    }, null, () => this.globals.componentLoaded = true);
   }
 
   save(): void {
     this.teamService.updateTeam(this.currentTeam)
-      .subscribe(() => this.title.name = 'Groupe ' + this.currentTeam.name);
+      .subscribe(() => this.globals.title = 'Groupe ' + this.currentTeam.name);
   }
 }

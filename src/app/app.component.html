@@ -1,19 +1,22 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <h1 style="text-align: center">
-    {{ title.name }}
+    {{ globals.title }}
   </h1>
+
+<ng-container *ngIf="!globals.componentLoaded">
+    <mat-spinner class="mat-spinner"></mat-spinner>
+</ng-container>
 
 <router-outlet></router-outlet>
 
-<button mat-raised-button
-        (click)="goBack()"
-        class="HomePageButton">
-  Revenir à la page précédente
-</button>
+<ng-container *ngIf="globals.componentLoaded">
+    <div *ngIf="!globals.isHomePage">
+      <button mat-raised-button
+      routerLink="/team-list"
+      class="HomePageButton">
+      Revenir au menu
+      </button>
+    </div>
+</ng-container>
 
-<button mat-raised-button
-        routerLink="/team-list"
-        class="HomePageButton">
-  Revenir au menu
-</button>
 
