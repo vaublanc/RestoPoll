@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Team } from '../shared/team';
 import { ActivatedRoute } from '@angular/router';
-import { Globals } from '../../core/globals';
+import { Globals } from '../../core/globals/globals';
 import { TeamService } from '../shared/team.service';
-import { NavigationService } from '../../core/navigation.service';
+import { NavigationService } from '../../core/services/navigation.service';
 import { MatDialog } from '@angular/material';
 import { DialogTeamSuppressionComponent } from '../dialog-team-suppression/dialog-team-suppression.component';
 import { flatMap } from 'rxjs/operators';
@@ -31,7 +31,6 @@ export class TeamComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.globals.componentLoaded = false;
   }
 
   openDialog(): void {
@@ -61,7 +60,7 @@ export class TeamComponent implements OnInit, OnDestroy {
     this.teamService.getTeam(id).subscribe(teamReturned => {
       this.currentTeam = teamReturned;
       this.globals.title = 'Groupe ' + this.currentTeam.name;
-    }, null, () => this.globals.componentLoaded = true);
+    });
   }
 
   save(): void {

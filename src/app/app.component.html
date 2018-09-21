@@ -3,13 +3,13 @@
     {{ globals.title }}
   </h1>
 
-<ng-container *ngIf="!globals.componentLoaded">
+<ng-container *ngIf="httpActivity">
     <mat-spinner class="mat-spinner"></mat-spinner>
 </ng-container>
 
 <router-outlet></router-outlet>
 
-<ng-container *ngIf="globals.componentLoaded">
+<ng-container *ngIf="!httpActivity">
     <div *ngIf="!globals.isHomePage">
       <button mat-raised-button
       routerLink="/team-list"

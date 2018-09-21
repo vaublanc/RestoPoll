@@ -1,4 +1,4 @@
-<ng-container *ngIf="globals.componentLoaded">
+<ng-container *ngIf="!httpActivity">
   <ng-container *ngIf="currentTeam">
     <form #teamForm = "ngForm">
       <label>Nom de votre groupe:

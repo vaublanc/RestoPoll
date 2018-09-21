@@ -4,10 +4,11 @@ import { MatDialog } from '@angular/material';
 import { DialogTeamCreationComponent } from '../dialog-team-creation/dialog-team-creation.component';
 import { UUID } from 'angular2-uuid';
 import { Router } from '@angular/router';
-import { Globals } from '../../core/globals';
+import { Globals } from '../../core/globals/globals';
 import { TeamService } from '../shared/team.service';
-import { NavigationService } from '../../core/navigation.service';
-import { Constants } from '../../core/constants';
+import { NavigationService } from '../../core/services/navigation.service';
+import { Constants } from '../../core/globals/constants';
+import { HttpStatusService } from '../../core/services/http-status.service';
 
 @Component({
   selector: 'app-team-list',
@@ -19,17 +20,20 @@ export class TeamListComponent implements OnInit, OnDestroy {
   teams: Team[] = [];
   newTeam: Team;
   addTeamButtonName: string;
+  httpActivity: number;
 
   constructor(
     public dialog: MatDialog,
     public router: Router,
     public globals: Globals,
     private teamService: TeamService,
-    public navigationService: NavigationService
-  ) { }
+    public navigationService: NavigationService,
+    private httpStatus: HttpStatusService
+  ) {
+    this.httpStatus.getHttpStatus().subscribe((nbRequestInFlight: number) => (this.httpActivity = nbRequestInFlight));
+  }
 
   ngOnInit() {
-    this.globals.componentLoaded = false;
     this.globals.title = Constants.homePageTitle;
     this.globals.isHomePage = true;
 
@@ -38,7 +42,6 @@ export class TeamListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.globals.isHomePage = false;
-    this.globals.componentLoaded = false;
   }
 
 
@@ -69,7 +72,7 @@ export class TeamListComponent implements OnInit, OnDestroy {
           } else {
             this.addTeamButtonName = '\+';
           }
-      }, null, () => this.globals.componentLoaded = true);
+      });
   }
 
   addTeam(teamToSave: Team): void {
