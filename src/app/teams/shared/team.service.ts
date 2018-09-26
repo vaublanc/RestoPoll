@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Team } from './team';
 import { Observable } from 'rxjs';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
 import { ExceptionService } from '../../core/services/exception.service';
+import { HttpStatusService } from '../../core/services/http-status.service';
+import { Constants } from '../../core/globals/constants';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -19,17 +21,18 @@ export class TeamService {
   constructor(
     private http: HttpClient,
     private exceptionService: ExceptionService,
+    private httpStatusService: HttpStatusService
   ) {}
 
   getTeam(id: string): Observable<Team> {
     const urlGet = `${this.teamsUrl}/${id}`;
-    return this.http.get<Team>(urlGet, {headers: {['loading']: 'true'}}).pipe(
+    return this.http.get<Team>(urlGet, {headers: Constants.httpHeaderForLoading}).pipe(
       catchError(this.exceptionService.handleError<Team>(`getHero id=${id}`))
     );
   }
 
   getTeams(): Observable<Team[]> {
-    return this.http.get<Team[]>(this.teamsUrl, {headers: {['loading']: 'true'}})
+    return this.http.get<Team[]>(this.teamsUrl, {headers: Constants.httpHeaderForLoading})
     .pipe(
       catchError(this.exceptionService.handleError('getTeams', []))
     );

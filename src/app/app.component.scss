@@ -1,0 +1,17 @@
+.HomePageButton {
+  margin: 15px
+}
+
+.mat-spinner{
+  left: calc(50% - 50px);
+}
+
+.loader {
+  position: fixed;
+  background-color: white;
+  top: 80px;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+}

@@ -1,28 +1,33 @@
-import { Component, OnInit, AfterViewChecked, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewChecked, AfterViewInit, Renderer2 } from '@angular/core';
 import { Globals } from './core/globals/globals';
 import { Constants } from './core/globals/constants';
 import { HttpStatusService } from './core/services/http-status.service';
-import { ChangeDetectorRef } from '@angular/core';
+import { startWith, delay, tap } from '../../node_modules/rxjs/operators';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewInit {
 
   homePageTitle = Constants.homePageTitle;
-  httpActivity: number;
+  isLoaded: boolean;
 
   constructor(
     public globals: Globals,
-    private httpStatus: HttpStatusService,
-    private cdRef: ChangeDetectorRef
-  ) {
-    this.httpStatus.getHttpStatus().subscribe((nbRequestInFlight: number) => (this.httpActivity = nbRequestInFlight));
-  }
+    public httpStatus: HttpStatusService
+  ) {}
 
   ngOnInit() {
     this.globals.isHomePage = true;
+  }
+
+  ngAfterViewInit() {
+    this.httpStatus.isLoaded.pipe(
+      startWith(null),
+      delay(0),
+      tap(isLoaded => this.isLoaded = isLoaded)
+    ).subscribe();
   }
 }

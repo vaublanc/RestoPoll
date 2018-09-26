@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy} from '@angular/core';
 import { Team } from '../shared/team';
 import { MatDialog } from '@angular/material';
 import { DialogTeamCreationComponent } from '../dialog-team-creation/dialog-team-creation.component';
@@ -20,7 +20,7 @@ export class TeamListComponent implements OnInit, OnDestroy {
   teams: Team[] = [];
   newTeam: Team;
   addTeamButtonName: string;
-  httpActivity: number;
+  isLoaded: boolean;
 
   constructor(
     public dialog: MatDialog,
@@ -28,22 +28,19 @@ export class TeamListComponent implements OnInit, OnDestroy {
     public globals: Globals,
     private teamService: TeamService,
     public navigationService: NavigationService,
-    private httpStatus: HttpStatusService
+    public httpStatus: HttpStatusService,
   ) {
-    this.httpStatus.getHttpStatus().subscribe((nbRequestInFlight: number) => (this.httpActivity = nbRequestInFlight));
+    this.globals.isHomePage = true;
   }
 
   ngOnInit() {
-    this.globals.title = Constants.homePageTitle;
-    this.globals.isHomePage = true;
-
     this.getTeams();
+    this.globals.title = Constants.homePageTitle;
   }
 
   ngOnDestroy() {
     this.globals.isHomePage = false;
   }
-
 
   openDialog(): void {
     this.newTeam = {

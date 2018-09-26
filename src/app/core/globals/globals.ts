@@ -4,6 +4,5 @@ import { Injectable } from '@angular/core';
 export class Globals {
   title: string;
   isHomePage: boolean;
-  HTTPActivity = 0;
 }
 

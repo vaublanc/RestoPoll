@@ -13,22 +13,5 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class HttpStatusService {
-  private nbRequestInFlight$: BehaviorSubject<number>;
-  constructor() {
-    this.nbRequestInFlight$ = new BehaviorSubject(0);
-  }
-
-  incHttpRequestNumber() {
-    const increment = this.nbRequestInFlight$.value + 1;
-    this.nbRequestInFlight$.next(increment);
-  }
-
-  decHttpRequestNumber() {
-    const increment = this.nbRequestInFlight$.value - 1;
-    this.nbRequestInFlight$.next(increment);
-  }
-
-  getHttpStatus(): Observable<number> {
-    return this.nbRequestInFlight$.asObservable();
-  }
+  public isLoaded = new BehaviorSubject(true);
 }
