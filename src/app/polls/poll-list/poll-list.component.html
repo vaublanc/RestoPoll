@@ -1,0 +1,13 @@
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let poll of polls">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{poll.name}}
+      </mat-panel-title>
+      <mat-panel-description>
+        Selectionnez vos choix
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+      <mat-checkbox>Check me</mat-checkbox>
+  </mat-expansion-panel>
+</mat-accordion>

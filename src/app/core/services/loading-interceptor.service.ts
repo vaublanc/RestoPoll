@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpEvent, HttpRequest, HttpHandler } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, finalize } from 'rxjs/operators';
 import { HttpStatusService } from './http-status.service';
 
 
@@ -32,10 +32,12 @@ export class LoadingInterceptorService {
 
     return next.handle(req).pipe(
       map(event => {
+        return event;
+      }),
+      finalize(() => {
         if (req.headers.get('loading') === 'true') {
           this.removeRequest(req);
         }
-        return event;
       })
     );
 

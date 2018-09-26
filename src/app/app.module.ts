@@ -8,7 +8,8 @@ import { MatButtonModule,
           MatGridListModule,
           MatProgressSpinnerModule,
           MatTabsModule,
-          MatTableModule} from '@angular/material';
+          MatTableModule,
+          MatExpansionModule} from '@angular/material';
 import { AppRoutingModule, routedComponents } from './app-routing.module';
 import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
 import { Globals } from './core/globals/globals';
@@ -24,6 +25,7 @@ import { LoadingInterceptorService } from './core/services/loading-interceptor.s
 import { HttpStatusService } from './core/services/http-status.service';
 import { TeamMemberListComponent } from './team-member/team-member-list/team-member-list.component';
 import { PollListComponent } from './polls/poll-list/poll-list.component';
+import { OptionListComponent } from './options/option-list/option-list.component';
 
 
 const RxJS_Services = [LoadingInterceptorService, HttpStatusService];
@@ -36,6 +38,7 @@ const RxJS_Services = [LoadingInterceptorService, HttpStatusService];
     DialogTeamSuppressionComponent,
     TeamMemberListComponent,
     PollListComponent,
+    OptionListComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,6 +56,7 @@ const RxJS_Services = [LoadingInterceptorService, HttpStatusService];
     MatProgressSpinnerModule,
     MatTabsModule,
     MatTableModule,
+    MatExpansionModule,
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
     // Remove it when a real server is ready to receive requests.

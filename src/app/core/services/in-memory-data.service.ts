@@ -21,8 +21,9 @@ export class InMemoryDataService implements InMemoryDbService {
 
     const polls = [
       {id: UUID.UUID(), name: 'Vendredi Midi', teamId: idSopra},
+      {id: UUID.UUID(), name: 'Mardi midi', teamId: idSopra}
     ];
 
-    return {teams, teamMembers};
+    return {teams, teamMembers, polls};
   }
 }
