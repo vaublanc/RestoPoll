@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { TeamMemberService } from '../shared/team-member.service';
 import { TeamMember } from '../shared/teamMember';
-import { SelectionModel } from '../../../../node_modules/@angular/cdk/collections';
+import { SelectionModel } from '@angular/cdk/collections';
 
 @Component({
   selector: 'app-team-member-list',

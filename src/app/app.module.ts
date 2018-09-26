@@ -25,7 +25,7 @@ import { LoadingInterceptorService } from './core/services/loading-interceptor.s
 import { HttpStatusService } from './core/services/http-status.service';
 import { TeamMemberListComponent } from './team-member/team-member-list/team-member-list.component';
 import { PollListComponent } from './polls/poll-list/poll-list.component';
-import { OptionListComponent } from './options/option-list/option-list.component';
+import { RestaurantComponent } from './options/restaurants/restaurant/restaurant.component';
 
 
 const RxJS_Services = [LoadingInterceptorService, HttpStatusService];
@@ -38,7 +38,7 @@ const RxJS_Services = [LoadingInterceptorService, HttpStatusService];
     DialogTeamSuppressionComponent,
     TeamMemberListComponent,
     PollListComponent,
-    OptionListComponent,
+    RestaurantComponent,
   ],
   imports: [
     BrowserModule,

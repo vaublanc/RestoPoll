@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Observable } from '../../../../node_modules/rxjs';
+import { Observable } from 'rxjs';
 import { Poll } from './poll';
-import { HttpClient } from '../../../../node_modules/@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Constants } from '../../core/globals/constants';
 import { Team } from '../../teams/shared/team';
-import { catchError } from '../../../../node_modules/rxjs/operators';
+import { catchError } from 'rxjs/operators';
 import { ExceptionService } from '../../core/services/exception.service';
 
 @Injectable({

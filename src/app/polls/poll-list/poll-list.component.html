@@ -1,5 +1,7 @@
 <mat-accordion>
-  <mat-expansion-panel *ngFor="let poll of polls">
+  <mat-expansion-panel *ngFor="let poll of polls"
+                        (opened)="getOptions(poll)"
+                        (closed)="emptyOptions()">
     <mat-expansion-panel-header>
       <mat-panel-title>
         {{poll.name}}
@@ -8,6 +10,8 @@
         Selectionnez vos choix
       </mat-panel-description>
     </mat-expansion-panel-header>
-      <mat-checkbox>Check me</mat-checkbox>
+    <div *ngFor="let option of currentOptions">
+      <mat-checkbox>{{option.name}}</mat-checkbox>
+    </div>
   </mat-expansion-panel>
 </mat-accordion>

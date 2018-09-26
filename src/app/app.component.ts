@@ -2,7 +2,7 @@ import { Component, OnInit, AfterViewChecked, AfterViewInit, Renderer2 } from '@
 import { Globals } from './core/globals/globals';
 import { Constants } from './core/globals/constants';
 import { HttpStatusService } from './core/services/http-status.service';
-import { startWith, delay, tap } from '../../node_modules/rxjs/operators';
+import { startWith, delay, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',

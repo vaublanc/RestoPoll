@@ -19,11 +19,19 @@ export class InMemoryDataService implements InMemoryDbService {
       {id: UUID.UUID(), firstName: 'Jean', lastName: 'Rajoute', teamId: idSopra},
     ];
 
+    const idVM = UUID.UUID();
+    const idMM = UUID.UUID();
+
     const polls = [
-      {id: UUID.UUID(), name: 'Vendredi Midi', teamId: idSopra},
-      {id: UUID.UUID(), name: 'Mardi midi', teamId: idSopra}
+      {id: idVM, nature: 'restaurant', name: 'Vendredi Midi', teamId: idSopra},
+      {id: idMM, nature: 'restaurant', name: 'Mardi midi', teamId: idSopra}
     ];
 
-    return {teams, teamMembers, polls};
+    const restaurants = [
+      {id: UUID.UUID(), name: 'Le 6eme sens', adress: '2 Rue Thomas Corneille, 76000 Rouen', pollId: idVM},
+      {id: UUID.UUID(),  name: 'Pomme d\'épices', adress: '66 Rue Bouvreuil, 76000 Rouen', pollId: idVM}
+    ];
+
+    return {teams, teamMembers, polls, restaurants};
   }
 }
