@@ -28,6 +28,7 @@ export class LoadingInterceptorService {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    // we do something only if the http request needs to display the loader
     if (req.headers.get('loading') === 'true') {
       this.requests.push(req);
       this.httpStatus.isLoaded.next(false);
@@ -38,6 +39,7 @@ export class LoadingInterceptorService {
         return event;
       }),
       finalize(() => {
+        // we do something only if the http request needs to display the loader
         if (req.headers.get('loading') === 'true') {
           this.removeRequest(req);
         }
