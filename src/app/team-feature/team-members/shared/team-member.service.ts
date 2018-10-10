@@ -3,9 +3,9 @@ import { TeamMember } from './teamMember';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
-import { ExceptionService } from '../../core/exceptions/exception.service';
+import { ExceptionService } from '../../../core/exceptions/exception.service';
 import { Team } from '../../teams/shared/team';
-import { Constants } from '../../shared/constants';
+import { Constants } from '../../../shared/constants';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })

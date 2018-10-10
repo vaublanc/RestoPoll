@@ -1,9 +1,8 @@
+import { OptionService } from './../../options/shared/option.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { Poll } from '../shared/poll';
-import { OptionService } from '../../options/shared/option.service';
-import { Restaurant } from '../../options/shared/restaurant';
 import { Option } from '../../options/shared/option';
-import { RestaurantService } from '../../options/restaurants/restaurant.service';
+import { NatureEnum } from 'src/app/shared/nature-enum';
 
 @Component({
   selector: 'app-poll-list',
@@ -16,22 +15,22 @@ export class PollListComponent implements OnInit {
   currentOptions: Option[];
 
   constructor(
-    private restaurantService: RestaurantService
+    private optionService: OptionService
   ) { }
 
   ngOnInit() {
   }
 
   getOptions(poll: Poll): void {
-    if (poll.nature === 'restaurant') {
-      this.restaurantService.getOptions(poll).subscribe(
+    if (poll.nature === NatureEnum.Restaurant) {
+      this.optionService.getOptions(poll).subscribe(
         optionsReturned => this.currentOptions = optionsReturned
       );
     }
   }
 
   emptyOptions(): void {
-    this.currentOptions.splice(0, this.currentOptions.length);
+    this.currentOptions = [];
   }
 
 }

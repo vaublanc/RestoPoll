@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Team } from '../shared/team';
 import { ActivatedRoute } from '@angular/router';
-import { Globals } from '../../core/globals/globals';
+import { Globals } from '../../../core/globals/globals';
 import { TeamService } from '../shared/team.service';
-import { NavigationService } from '../../core/navigation/navigation.service';
+import { NavigationService } from '../../../core/navigation/navigation.service';
 import { MatDialog } from '@angular/material';
 import { DialogTeamSuppressionComponent } from '../dialog-team-suppression/dialog-team-suppression.component';
 import { flatMap } from 'rxjs/operators';

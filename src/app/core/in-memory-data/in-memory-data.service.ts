@@ -1,5 +1,6 @@
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 import { UUID } from 'angular2-uuid';
+import { NatureEnum } from 'src/app/shared/nature-enum';
 
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
@@ -23,8 +24,8 @@ export class InMemoryDataService implements InMemoryDbService {
     const idMM = UUID.UUID();
 
     const polls = [
-      {id: idVM, nature: 'restaurant', name: 'Vendredi Midi', teamId: idSopra},
-      {id: idMM, nature: 'restaurant', name: 'Mardi midi', teamId: idSopra}
+      {id: idVM, nature: NatureEnum.Restaurant, name: 'Vendredi Midi', teamId: idSopra},
+      {id: idMM, nature: NatureEnum.Restaurant, name: 'Mardi midi', teamId: idSopra}
     ];
 
     const restaurants = [

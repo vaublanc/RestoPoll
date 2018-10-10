@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Poll } from './poll';
 import { HttpClient } from '@angular/common/http';
-import { Constants } from '../../shared/constants';
+import { Constants } from '../../../shared/constants';
 import { Team } from '../../teams/shared/team';
 import { catchError } from 'rxjs/operators';
-import { ExceptionService } from '../../core/exceptions/exception.service';
+import { ExceptionService } from '../../../core/exceptions/exception.service';
 
 @Injectable()
 export class PollService {

@@ -4,11 +4,11 @@ import { MatDialog } from '@angular/material';
 import { DialogTeamCreationComponent } from '../dialog-team-creation/dialog-team-creation.component';
 import { UUID } from 'angular2-uuid';
 import { Router } from '@angular/router';
-import { Globals } from '../../core/globals/globals';
+import { Globals } from '../../../core/globals/globals';
 import { TeamService } from '../shared/team.service';
-import { NavigationService } from '../../core/navigation/navigation.service';
-import { Constants } from '../../shared/constants';
-import { HttpStatusService } from '../../core/loader/http-status.service';
+import { NavigationService } from '../../../core/navigation/navigation.service';
+import { Constants } from '../../../shared/constants';
+import { HttpStatusService } from '../../../core/loader/http-status.service';
 
 @Component({
   selector: 'app-team-list',
