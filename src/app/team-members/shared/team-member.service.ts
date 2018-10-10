@@ -3,17 +3,15 @@ import { TeamMember } from './teamMember';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
-import { ExceptionService } from '../../core/services/exception.service';
+import { ExceptionService } from '../../core/exceptions/exception.service';
 import { Team } from '../../teams/shared/team';
-import { Constants } from '../../core/globals/constants';
+import { Constants } from '../../shared/constants';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class TeamMemberService {
 
   private teamsUrl = 'api/teamMembers';

@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewChecked, AfterViewInit, Renderer2 } from '@angular/core';
 import { Globals } from './core/globals/globals';
-import { Constants } from './core/globals/constants';
-import { HttpStatusService } from './core/services/http-status.service';
+import { Constants } from './shared/constants';
+import { HttpStatusService } from './core/loader/http-status.service';
 import { startWith, delay, tap } from 'rxjs/operators';
 
 @Component({

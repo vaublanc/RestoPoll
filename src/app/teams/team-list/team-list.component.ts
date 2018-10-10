@@ -6,9 +6,9 @@ import { UUID } from 'angular2-uuid';
 import { Router } from '@angular/router';
 import { Globals } from '../../core/globals/globals';
 import { TeamService } from '../shared/team.service';
-import { NavigationService } from '../../core/services/navigation.service';
-import { Constants } from '../../core/globals/constants';
-import { HttpStatusService } from '../../core/services/http-status.service';
+import { NavigationService } from '../../core/navigation/navigation.service';
+import { Constants } from '../../shared/constants';
+import { HttpStatusService } from '../../core/loader/http-status.service';
 
 @Component({
   selector: 'app-team-list',

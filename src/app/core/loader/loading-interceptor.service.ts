@@ -5,9 +5,7 @@ import { map, finalize } from 'rxjs/operators';
 import { HttpStatusService } from './http-status.service';
 
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class LoadingInterceptorService {
 
   private requests: HttpRequest<any>[] = [];

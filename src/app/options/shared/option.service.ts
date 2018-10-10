@@ -3,9 +3,7 @@ import { Poll } from '../../polls/shared/poll';
 import { Observable } from 'rxjs';
 import { Option } from './option';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export abstract class OptionService {
 
   constructor() { }

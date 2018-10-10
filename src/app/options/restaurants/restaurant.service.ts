@@ -4,13 +4,10 @@ import { Poll } from '../../polls/shared/poll';
 import { Observable } from 'rxjs';
 import { Restaurant } from '../shared/restaurant';
 import { HttpClient } from '../../../../node_modules/@angular/common/http';
-import { Constants } from '../../core/globals/constants';
-import { ExceptionService } from '../../core/services/exception.service';
+import { ExceptionService } from '../../core/exceptions/exception.service';
 import { catchError } from '../../../../node_modules/rxjs/operators';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class RestaurantService implements OptionService {
 
   restaurantUrl = 'api/restaurants';

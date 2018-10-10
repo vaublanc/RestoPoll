@@ -3,17 +3,15 @@ import { Team } from './team';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
-import { ExceptionService } from '../../core/services/exception.service';
-import { HttpStatusService } from '../../core/services/http-status.service';
-import { Constants } from '../../core/globals/constants';
+import { ExceptionService } from '../../core/exceptions/exception.service';
+import { HttpStatusService } from '../../core/loader/http-status.service';
+import { Constants } from '../../shared/constants';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class TeamService {
 
   private teamsUrl = 'api/teams';

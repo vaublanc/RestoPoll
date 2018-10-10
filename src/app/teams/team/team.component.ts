@@ -3,13 +3,13 @@ import { Team } from '../shared/team';
 import { ActivatedRoute } from '@angular/router';
 import { Globals } from '../../core/globals/globals';
 import { TeamService } from '../shared/team.service';
-import { NavigationService } from '../../core/services/navigation.service';
+import { NavigationService } from '../../core/navigation/navigation.service';
 import { MatDialog } from '@angular/material';
 import { DialogTeamSuppressionComponent } from '../dialog-team-suppression/dialog-team-suppression.component';
 import { flatMap } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { TeamMember } from '../../team-member/shared/teamMember';
-import { TeamMemberService } from '../../team-member/shared/team-member.service';
+import { TeamMember } from '../../team-members/shared/teamMember';
+import { TeamMemberService } from '../../team-members/shared/team-member.service';
 import { PollService } from '../../polls/shared/poll.service';
 import { Poll } from '../../polls/shared/poll';
 

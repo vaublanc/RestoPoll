@@ -1,81 +1,35 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { OptionsModule } from './options/options.module';
+import { TeamMembersModule } from './team-members/team-members.module';
+import { CoreModule } from './core/core.module';
 import { NgModule } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule,
-          MatCheckboxModule,
-          MatDialogModule,
-          MatInputModule,
-          MatGridListModule,
-          MatProgressSpinnerModule,
-          MatTabsModule,
-          MatTableModule,
-          MatExpansionModule} from '@angular/material';
-import { AppRoutingModule, routedComponents } from './app-routing.module';
-import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
-import { Globals } from './core/globals/globals';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './core/services/in-memory-data.service';
-
-
+import { AppRoutingModule} from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DialogTeamCreationComponent } from './teams/dialog-team-creation/dialog-team-creation.component';
-import { DialogTeamSuppressionComponent } from './teams/dialog-team-suppression/dialog-team-suppression.component';
-import { LoadingInterceptorService } from './core/services/loading-interceptor.service';
-import { HttpStatusService } from './core/services/http-status.service';
-import { TeamMemberListComponent } from './team-member/team-member-list/team-member-list.component';
-import { PollListComponent } from './polls/poll-list/poll-list.component';
-import { RestaurantComponent } from './options/restaurants/restaurant/restaurant.component';
-
-
-const RxJS_Services = [LoadingInterceptorService, HttpStatusService];
+import { SharedModule } from './shared/shared.module';
+import { TeamsModule } from './teams/teams.module';
+import { PollsModule } from './polls/polls.module';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 @NgModule({
   declarations: [
     AppComponent,
-    routedComponents,
-    DialogTeamCreationComponent,
-    DialogTeamSuppressionComponent,
-    TeamMemberListComponent,
-    PollListComponent,
-    RestaurantComponent,
   ],
   imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    MatButtonModule,
-    MatCheckboxModule,
-    AppRoutingModule,
-    MatDialogModule,
-    MatInputModule,
-    FormsModule,
-    MatGridListModule,
     HttpClientModule,
     HttpClientInMemoryWebApiModule,
-    FormsModule,
-    MatProgressSpinnerModule,
-    MatTabsModule,
-    MatTableModule,
-    MatExpansionModule,
-    // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
-    // and returns simulated server responses.
-    // Remove it when a real server is ready to receive requests.
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false, delay: 200})
+    BrowserModule,
+    BrowserAnimationsModule,
+    CoreModule,
+    SharedModule,
+    TeamsModule,
+    TeamMembersModule,
+    PollsModule,
+    OptionsModule,
+    AppRoutingModule,
   ],
-  entryComponents: [
-    DialogTeamCreationComponent,
-    DialogTeamSuppressionComponent
-  ],
-  providers: [
-    Globals,
-    RxJS_Services,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: LoadingInterceptorService,
-      multi: true
-    }
-  ],
+
   bootstrap: [
     AppComponent,
   ],
