@@ -1,4 +1,4 @@
-import {NatureEnum} from '../../shared/nature-enum';
+import {NatureEnum} from '../../../shared/nature-enum';
 
 export interface Poll {
   id: string;
