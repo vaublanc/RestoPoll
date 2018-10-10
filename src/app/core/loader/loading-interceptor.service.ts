@@ -14,6 +14,11 @@ export class LoadingInterceptorService {
     private httpStatus: HttpStatusService
   ) {}
 
+  // the interceptor intercept all http request before they are executed. This allow us to handle the global loader.
+  // Indeed, when a request is intercepted, we push it on a array. And when the request is handled, we remove it from the array.
+  // Then we check whether the array is empty or not.
+  // At each of these steps, we update the global boolean that handle the visibility of the global loader (with the next).
+
   removeRequest(req: HttpRequest<any>) {
     const reqIndex = this.requests.indexOf(req);
     if (reqIndex >= 0) {

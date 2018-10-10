@@ -57,7 +57,7 @@ export class TeamListComponent implements OnInit, OnDestroy {
       data: this.newTeam
     });
 
-    // after the user has closed the tab, if he added a name, we get back the team previously created
+    // after the user has closed the tab, if he added a name, we take back the team previously created
     // and then we add it to the current list. Otherwise, we do nothing
     dialogRef.afterClosed().subscribe(teamCreated => {
       if (teamCreated && teamCreated.name) {
@@ -71,6 +71,7 @@ export class TeamListComponent implements OnInit, OnDestroy {
       .subscribe(teamsReturned => {
         this.teams = teamsReturned;
         if (this.teams.length === 0) {
+          // the text on the "add team button" change whether the list of teams is empty or not
           this.addTeamButtonName = 'Créer mon premier groupe';
           } else {
             this.addTeamButtonName = '\+';

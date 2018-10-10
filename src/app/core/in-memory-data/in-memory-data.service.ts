@@ -2,7 +2,7 @@ import { InMemoryDbService } from 'angular-in-memory-web-api';
 import { UUID } from 'angular2-uuid';
 import { NatureEnum } from 'src/app/shared/nature-enum';
 
-// this service simulate a distant web database. This is our mock
+// this service simulate a distant web database. This is our mock.
 
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {

@@ -22,11 +22,8 @@ export class PollListComponent implements OnInit {
   }
 
   getOptions(poll: Poll): void {
-    if (poll.nature === NatureEnum.Restaurant) {
-      this.optionService.getOptions(poll).subscribe(
-        optionsReturned => this.currentOptions = optionsReturned
-      );
-    }
+    this.optionService.getOptions(poll).subscribe(
+      optionsReturned => this.currentOptions = optionsReturned);
   }
 
   emptyOptions(): void {
