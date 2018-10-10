@@ -39,6 +39,7 @@ export class TeamComponent implements OnInit {
     this.getTeam();
   }
 
+  // open a modal to confirm suppression
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogTeamSuppressionComponent, {
       width: '450px',

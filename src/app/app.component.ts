@@ -12,6 +12,8 @@ import { startWith, delay, tap } from 'rxjs/operators';
 export class AppComponent implements OnInit, AfterViewInit {
 
   homePageTitle = Constants.homePageTitle;
+
+  // Boolean that controls the visibility of the global loader
   isLoaded: boolean;
 
   constructor(
@@ -20,9 +22,14 @@ export class AppComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit() {
+    // this boolean controls the visibility of the "back to home page" button, that we obviously don't want to display on the home page.
     this.globals.isHomePage = true;
   }
 
+  // I faced some issues with the global loader. If i update "isLoaded" on the ngOnInit
+  // I got the error "ExpressionChangedAfterItHasBeenCheckedError". More information about this :
+  // https://blog.angularindepth.com/everything-you-need-to-know-about-the-expressionchangedafterithasbeencheckederror-error-e3fd9ce7dbb4
+  // So, in order to correct this error, we use that little trick : we delay the affectation to the next cycle
   ngAfterViewInit() {
     this.httpStatus.isLoaded.pipe(
       startWith(null),

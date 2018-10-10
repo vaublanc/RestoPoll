@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  {path: '', redirectTo: '/team-list', pathMatch: 'full'},
+  {path: '', redirectTo: 'home-page', pathMatch: 'full'},
 ];
 
 @NgModule({

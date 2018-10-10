@@ -16,10 +16,13 @@ import { MatButtonModule,
     MatTabsModule,
     MatCheckboxModule,
     MatTableModule,
-    MatExpansionModule} from '@angular/material';
+    MatExpansionModule,
+    MatDividerModule,
+    MatListModule} from '@angular/material';
 import { PollListComponent } from './polls/poll-list/poll-list.component';
 import { PollService } from './polls/shared/poll.service';
 import { OptionService } from './options/shared/option.service';
+import { HomePageComponent } from './home-page/home-page.component';
 
 const MatModule = [
     MatButtonModule,
@@ -29,7 +32,9 @@ const MatModule = [
     MatTableModule,
     MatTabsModule,
     MatCheckboxModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatDividerModule,
+    MatListModule
   ];
 
 @NgModule({
@@ -40,6 +45,7 @@ const MatModule = [
         TeamListComponent,
         TeamMemberListComponent,
         PollListComponent,
+        HomePageComponent,
     ],
     imports: [
         CommonModule,

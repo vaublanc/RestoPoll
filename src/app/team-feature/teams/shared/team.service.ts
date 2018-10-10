@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
 import { ExceptionService } from '../../../core/exceptions/exception.service';
-import { HttpStatusService } from '../../../core/loader/http-status.service';
 import { Constants } from '../../../shared/constants';
 
 const httpOptions = {
@@ -19,7 +18,6 @@ export class TeamService {
   constructor(
     private http: HttpClient,
     private exceptionService: ExceptionService,
-    private httpStatusService: HttpStatusService
   ) {}
 
   getTeam(id: string): Observable<Team> {

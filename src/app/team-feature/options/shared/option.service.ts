@@ -13,6 +13,7 @@ import { NatureEnum } from 'src/app/shared/nature-enum';
 export class OptionService {
 
   url = 'api/';
+  fullUrl: string;
 
   constructor(
     private http: HttpClient,
@@ -20,10 +21,16 @@ export class OptionService {
   ) { }
 
   getOptions(poll: Poll): Observable<Option[]> {
-    if (poll.nature === NatureEnum.Restaurant) {
-      const restaurantUrl = this.url + 'restaurants';
-      return this.http.get<Restaurant[]>(`${restaurantUrl}/?pollId=${poll.id}`).pipe(
-        catchError(this.exceptionService.handleError<Restaurant[]>('getPolls')));
+    // we need to split the different type of option we can get, in order to return the right one.
+    switch (poll.nature) {
+      case NatureEnum.Restaurant:
+        this.fullUrl = this.url + 'restaurants';
+        break;
+
+      default:
+        return new Observable<Option[]>();
     }
+    return this.http.get<Option[]>(`${this.fullUrl}/?pollId=${poll.id}`).pipe(
+      catchError(this.exceptionService.handleError<Option[]>('getOptions')));
   }
 }

@@ -22,12 +22,15 @@ export class TeamMemberListComponent implements OnInit {
   ngOnInit() {
   }
 
+  // method to know if all the checkboxes are selected, in order to know whether the master checkbox is checked or not
   isAllSelected() {
     const numSelected = this.selection.selected.length;
     const numRows = this.teamMembers.length;
     return numSelected === numRows;
   }
 
+  // if the master checkbox is checked, then we check the other checkboxes
+  // if the master checkbox is unchecked, then we uncheck the other checkboxes
   masterToggle() {
     this.isAllSelected() ? this.selection.clear() : this.teamMembers.forEach(row => this.selection.select(row));
   }

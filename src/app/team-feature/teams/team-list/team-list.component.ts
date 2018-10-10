@@ -39,20 +39,26 @@ export class TeamListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    // controls the visibility of the "back to home page button"
     this.globals.isHomePage = false;
   }
 
+  // opens a modal when the user click on the "add team" button
   openDialog(): void {
+    // we immediatly create a new team with a blank name team
     this.newTeam = {
       id: UUID.UUID(),
       name: ''
     };
 
+    // we pass the new created team to the modal
     const dialogRef = this.dialog.open(DialogTeamCreationComponent, {
       width: '450px',
       data: this.newTeam
     });
 
+    // after the user has closed the tab, if he added a name, we get back the team previously created
+    // and then we add it to the current list. Otherwise, we do nothing
     dialogRef.afterClosed().subscribe(teamCreated => {
       if (teamCreated && teamCreated.name) {
         this.addTeam(teamCreated);
