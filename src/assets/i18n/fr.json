@@ -1,0 +1,23 @@
+{
+    "TeamFeature": {
+        "BackToMenu": "Revenir au menu",
+        "CreateNewTeam": "Créer une nouvelle équipe",
+        "Team": "Groupe",
+        "YourTeamName": "Nom de votre groupe",
+        "SaveYourChanges": "Enregistrer vos modifications",
+        "DeleteThisTeam": "Supprimer ce groupe",
+        "Cancel": "Annuler",
+        "FirstName": "Prenom",
+        "LastName": "Nom",
+        "DeleteSelectedMembers": "Supprimer les personnes selectionnées",
+        "Name": "Nom",
+        "SelectYourOptions": "Selectionnez vos choix",
+        "StartPollWithSelectedOptions": "Lancer le sondage avec les options selectionnées",
+        "RunningPolls": "Sondages en cours",
+        "YourFavoritesPolls": "Vos sondages favoris",
+        "YourTeams": "Vos groupes",
+        "ConfirmTeamSupression": "Etes-vous sûr de vouloir supprimer le groupe",
+        "NewTeamName": "Nom du nouveau groupe"
+    }
+
+}

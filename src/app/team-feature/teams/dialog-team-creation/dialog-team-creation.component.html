@@ -1,6 +1,6 @@
 <label mat-dialog-title>
   <mat-form-field class="full-width">
-    <input matInput [(ngModel)] = "newteam.name" placeholder="Nom du nouveau groupe">
+    <input matInput [(ngModel)] = "newteam.name" placeholder="{{'NewTeamName' | translate: 'TeamFeature'}}">
   </mat-form-field>
 </label>
 
@@ -10,6 +10,6 @@
   </button>
 
   <button mat-dialog-close>
-    Annuler
+    {{'Cancel' | translate: 'TeamFeature'}}
   </button>
 </mat-dialog-actions>

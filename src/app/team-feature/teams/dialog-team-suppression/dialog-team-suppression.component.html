@@ -1,5 +1,5 @@
 <label mat-dialog-title>
-  Etes-vous sûr de vouloir supprimer le groupe {{deletedTeam.name}} ?
+  {{'ConfirmTeamSupression' | translate: 'TeamFeature'}} {{deletedTeam.name}} ?
 </label>
 
 <mat-dialog-actions>
@@ -8,6 +8,6 @@
     </button>
 
     <button mat-dialog-close>
-      Annuler
+      {{'Cancel' | translate: 'TeamFeature'}}
     </button>
   </mat-dialog-actions>

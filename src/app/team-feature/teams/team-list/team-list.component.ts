@@ -1,3 +1,4 @@
+import { TranslateService } from './../../../core/translation/translate.service';
 import { Component, OnInit, OnDestroy} from '@angular/core';
 import { Team } from '../shared/team';
 import { MatDialog } from '@angular/material';
@@ -29,6 +30,7 @@ export class TeamListComponent implements OnInit, OnDestroy {
     private teamService: TeamService,
     public navigationService: NavigationService,
     public httpStatus: HttpStatusService,
+    private translateService: TranslateService
   ) {
     this.globals.isHomePage = true;
   }
@@ -70,11 +72,10 @@ export class TeamListComponent implements OnInit, OnDestroy {
     this.teamService.getTeams()
       .subscribe(teamsReturned => {
         this.teams = teamsReturned;
+        this.addTeamButtonName = '\+';
         if (this.teams.length === 0) {
           // the text on the "add team button" change whether the list of teams is empty or not
-          this.addTeamButtonName = 'Créer mon premier groupe';
-          } else {
-            this.addTeamButtonName = '\+';
+          this.addTeamButtonName = this.translateService.data.TeamFeature['CreateNewTeam'];
           }
       });
   }

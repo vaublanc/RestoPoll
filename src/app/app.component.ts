@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewChecked, AfterViewInit, Renderer2 } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Globals } from './core/globals/globals';
 import { Constants } from './shared/constants';
 import { HttpStatusService } from './core/loader/http-status.service';

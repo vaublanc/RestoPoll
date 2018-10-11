@@ -1,3 +1,4 @@
+import { SharedModule } from './../shared/shared.module';
 import { TeamMemberService } from './team-members/shared/team-member.service';
 import { TeamMemberListComponent } from './team-members/team-member-list/team-member-list.component';
 import { FormsModule } from '@angular/forms';
@@ -52,6 +53,7 @@ const MatModule = [
         TeamsRoutingModule,
         MatModule,
         FormsModule,
+        SharedModule
     ],
     exports: [
         DialogTeamCreationComponent,

@@ -1,3 +1,4 @@
+import { TranslateService } from './../../../core/translation/translate.service';
 import { Component, OnInit } from '@angular/core';
 import { Team } from '../shared/team';
 import { ActivatedRoute } from '@angular/router';
@@ -32,7 +33,8 @@ export class TeamComponent implements OnInit {
     private teamService: TeamService,
     private navigationService: NavigationService,
     private teamMemberService: TeamMemberService,
-    private pollService: PollService
+    private pollService: PollService,
+    private translateService: TranslateService
   ) {}
 
   ngOnInit() {
@@ -55,7 +57,7 @@ export class TeamComponent implements OnInit {
       })
     ).subscribe(id => {
       if (id) {
-        this.navigationService.navigate('/team-list');
+        this.navigationService.navigate('/home-page');
       }
     });
 
@@ -66,7 +68,7 @@ export class TeamComponent implements OnInit {
 
     this.teamService.getTeam(id).subscribe(teamReturned => {
       this.currentTeam = teamReturned;
-      this.globals.title = 'Groupe ' + this.currentTeam.name;
+      this.setTeamName();
       this.getTeamMembers();
       this.getPolls();
     });
@@ -74,7 +76,7 @@ export class TeamComponent implements OnInit {
 
   save(): void {
     this.teamService.updateTeam(this.currentTeam)
-      .subscribe(() => this.globals.title = 'Groupe ' + this.currentTeam.name);
+      .subscribe(() => this.setTeamName());
   }
 
   getTeamMembers(): void {
@@ -87,5 +89,9 @@ export class TeamComponent implements OnInit {
     this.pollService.getPolls(this.currentTeam).subscribe(
       pollsReturned => this.polls = pollsReturned
     );
+  }
+
+  setTeamName(): void {
+    this.globals.title = this.translateService.data.TeamFeature['Team'] + ' ' + this.currentTeam.name;
   }
 }
