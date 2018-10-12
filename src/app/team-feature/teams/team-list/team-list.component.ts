@@ -31,13 +31,10 @@ export class TeamListComponent implements OnInit, OnDestroy {
     public navigationService: NavigationService,
     public httpStatus: HttpStatusService,
     private translateService: TranslateService
-  ) {
-    this.globals.isHomePage = true;
-  }
+  ) {}
 
   ngOnInit() {
     this.getTeams();
-    this.globals.title = Constants.homePageTitle;
   }
 
   ngOnDestroy() {
@@ -57,7 +54,7 @@ export class TeamListComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(DialogTeamCreationComponent, {
       width: '450px',
       data: this.newTeam
-    });
+  });
 
     // after the user has closed the tab, if he added a name, we take back the team previously created
     // and then we add it to the current list. Otherwise, we do nothing

@@ -22,4 +22,10 @@ export class PollService {
       catchError(this.exceptionService.handleError<Poll[]>('getPolls')
     ));
   }
+
+  getFavoritePolls(): Observable<Poll[]> {
+    return this.http.get<Poll[]>(`${this.pollsUrl}/?isFavorite=true`, {headers: Constants.httpHeaderForLoading}).pipe(
+      catchError(this.exceptionService.handleError<Poll[]>('getPolls')
+    ));
+  }
 }

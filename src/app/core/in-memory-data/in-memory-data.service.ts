@@ -26,8 +26,8 @@ export class InMemoryDataService implements InMemoryDbService {
     const idMM = UUID.UUID();
 
     const polls = [
-      {id: idVM, nature: NatureEnum.Restaurant, name: 'Vendredi Midi', teamId: idSopra},
-      {id: idMM, nature: NatureEnum.Restaurant, name: 'Mardi midi', teamId: idSopra}
+      {id: idVM, nature: NatureEnum.Restaurant, name: 'Vendredi Midi', isFavorite: true, teamId: idSopra},
+      {id: idMM, nature: NatureEnum.Restaurant, name: 'Mardi midi', isFavorite: false, teamId: idSopra}
     ];
 
     const restaurants = [

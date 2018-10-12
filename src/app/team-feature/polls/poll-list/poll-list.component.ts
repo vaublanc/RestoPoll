@@ -1,9 +1,12 @@
+import { TeamService } from './../../teams/shared/team.service';
 import { OptionService } from './../../options/shared/option.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { Poll } from '../shared/poll';
 import { Option } from '../../options/shared/option';
-import { NatureEnum } from 'src/app/shared/nature-enum';
 import { SelectionModel } from '@angular/cdk/collections';
+import { Globals } from 'src/app/core/globals/globals';
+import { MatDialog } from '@angular/material';
+import { DialogStartingPollComponent } from '../dialog-starting-poll/dialog-starting-poll.component';
 
 @Component({
   selector: 'app-poll-list',
@@ -18,7 +21,9 @@ export class PollListComponent implements OnInit {
   selection = new SelectionModel<Option>(true, []);
 
   constructor(
-    private optionService: OptionService
+    public dialog: MatDialog,
+    private optionService: OptionService,
+    public globals: Globals
   ) { }
 
   ngOnInit() {
@@ -50,4 +55,9 @@ export class PollListComponent implements OnInit {
     this.isAllSelected() ? this.selection.clear() : this.currentOptions.forEach(row => this.selection.select(row));
   }
 
+  openDialog(poll: Poll): void {
+    const dialogRef = this.dialog.open(DialogStartingPollComponent, {
+      data: poll
+    });
+  }
 }

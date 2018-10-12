@@ -80,7 +80,7 @@ export class TeamComponent implements OnInit {
   }
 
   getTeamMembers(): void {
-    this.teamMemberService.getTeamMembers(this.currentTeam).subscribe(
+    this.teamMemberService.getTeamMembers(this.currentTeam.id).subscribe(
       teamMembersReturned => this.teamMembers = teamMembersReturned
     );
   }

@@ -24,6 +24,8 @@ import { PollListComponent } from './polls/poll-list/poll-list.component';
 import { PollService } from './polls/shared/poll.service';
 import { OptionService } from './options/shared/option.service';
 import { HomePageComponent } from './home-page/home-page.component';
+import { GetPollTeamNamePipe } from './polls/shared/get-poll-team-name.pipe';
+import { DialogStartingPollComponent } from './polls/dialog-starting-poll/dialog-starting-poll.component';
 
 const MatModule = [
     MatButtonModule,
@@ -47,6 +49,8 @@ const MatModule = [
         TeamMemberListComponent,
         PollListComponent,
         HomePageComponent,
+        GetPollTeamNamePipe,
+        DialogStartingPollComponent
     ],
     imports: [
         CommonModule,
@@ -62,6 +66,7 @@ const MatModule = [
         TeamListComponent,
         TeamMemberListComponent,
         PollListComponent,
+        GetPollTeamNamePipe
     ],
     providers: [
         TeamService,
@@ -71,7 +76,8 @@ const MatModule = [
     ],
     entryComponents: [
         DialogTeamCreationComponent,
-        DialogTeamSuppressionComponent
+        DialogTeamSuppressionComponent,
+        DialogStartingPollComponent
     ],
 })
 export class TeamsModule {}

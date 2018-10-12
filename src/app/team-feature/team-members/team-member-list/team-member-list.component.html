@@ -29,6 +29,8 @@
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
 
-<button (click)="removeTeamMembers()">
-  {{'DeleteSelectedMembers' | translate: 'TeamFeature'}}
-</button>
+<ng-container *ngIf="isTeamMemberPage">
+  <button (click)="removeTeamMembers()">
+    {{'DeleteSelectedMembers' | translate: 'TeamFeature'}}
+  </button>
+</ng-container>

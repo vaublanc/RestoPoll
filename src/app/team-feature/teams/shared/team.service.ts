@@ -56,5 +56,12 @@ export class TeamService {
     );
   }
 
+  getPollTeamName(teamId: string): Observable<string> {
+    return this.http.get<Team>(`${this.teamsUrl}/${teamId}`).pipe(
+      map(teamReturned => teamReturned.name),
+      catchError(this.exceptionService.handleError<string>('getPollTeamName'))
+    );
+  }
+
 
 }

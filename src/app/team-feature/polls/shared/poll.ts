@@ -4,4 +4,5 @@ export interface Poll {
   id: string;
   name: string;
   nature: NatureEnum;
+  teamId: string;
 }

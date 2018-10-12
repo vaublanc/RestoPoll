@@ -17,7 +17,8 @@
         "YourFavoritesPolls": "Vos sondages favoris",
         "YourTeams": "Vos groupes",
         "ConfirmTeamSupression": "Etes-vous sûr de vouloir supprimer le groupe",
-        "NewTeamName": "Nom du nouveau groupe"
+        "NewTeamName": "Nom du nouveau groupe",
+        "WhoIsVoting": "Qui participe au sondage ?"
     }
 
 }

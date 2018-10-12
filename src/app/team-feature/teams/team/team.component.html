@@ -2,7 +2,7 @@
   <mat-tab-group>
     <mat-tab label="General">
         <form #teamForm = "ngForm" class="tab">
-            <label>{{'TeamName' | translate: 'TeamFeature'}}
+            <label>{{'YourTeamName' | translate: 'TeamFeature'}}
               <input name="teamNameInput" [(ngModel)]="currentTeam.name" required>
             </label>
           </form>
@@ -21,7 +21,7 @@
           </div>
     </mat-tab>
     <mat-tab label="Membres">
-      <app-team-member-list [teamMembers]="teamMembers"></app-team-member-list>
+      <app-team-member-list [teamMembers]="teamMembers" [isTeamMemberPage]="true"></app-team-member-list>
     </mat-tab>
     <mat-tab label="Sondages">
       <app-poll-list [polls]="polls"></app-poll-list>

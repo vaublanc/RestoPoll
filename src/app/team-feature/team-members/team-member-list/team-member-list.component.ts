@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { TeamMemberService } from '../shared/team-member.service';
 import { TeamMember } from '../shared/teamMember';
 import { SelectionModel } from '@angular/cdk/collections';
+import { Globals } from 'src/app/core/globals/globals';
 
 @Component({
   selector: 'app-team-member-list',
@@ -11,12 +12,14 @@ import { SelectionModel } from '@angular/cdk/collections';
 export class TeamMemberListComponent implements OnInit {
 
   @Input() teamMembers: TeamMember[] = [];
+  @Input() isTeamMemberPage: boolean;
   displayedColumns = ['select', 'firstName', 'lastName'];
   selection = new SelectionModel<TeamMember>(true, []);
   currentGroup: string;
 
   constructor(
-    private teamMemberService: TeamMemberService
+    private teamMemberService: TeamMemberService,
+    public globals: Globals,
   ) { }
 
   ngOnInit() {

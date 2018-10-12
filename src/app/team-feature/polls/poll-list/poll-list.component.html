@@ -8,6 +8,11 @@
       </mat-panel-title>
       <mat-panel-description>
         {{'SelectYourOptions' | translate: 'TeamFeature'}}
+        <ng-container *ngIf="this.globals.isHomePage">
+          <div class="teamName">
+              {{'Team' | translate: 'TeamFeature'}} {{poll.teamId | getPollTeamName | async}}
+          </div>
+        </ng-container>
       </mat-panel-description>
     </mat-expansion-panel-header>
     <table mat-table [dataSource]="currentOptions" class="table">
@@ -35,8 +40,9 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-    <button mat-raised-button>
-      {{'StartPollWithSelectedOptions' | translate: 'TeamFeature'}}
-    </button>
+      <button mat-raised-button
+      (click)="openDialog(poll)">
+        {{'StartPollWithSelectedOptions' | translate: 'TeamFeature'}}
+      </button>
   </mat-expansion-panel>
 </mat-accordion>
