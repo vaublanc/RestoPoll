@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { TeamMemberService } from '../shared/team-member.service';
 import { TeamMember } from '../shared/teamMember';
 import { SelectionModel } from '@angular/cdk/collections';
@@ -9,20 +9,24 @@ import { Globals } from 'src/app/core/globals/globals';
   templateUrl: './team-member-list.component.html',
   styleUrls: ['./team-member-list.component.scss']
 })
-export class TeamMemberListComponent implements OnInit {
+export class TeamMemberListComponent {
 
   @Input() teamMembers: TeamMember[] = [];
   @Input() isTeamMemberPage: boolean;
   displayedColumns = ['select', 'firstName', 'lastName'];
   selection = new SelectionModel<TeamMember>(true, []);
   currentGroup: string;
+  @Output() teamMembersSelected = new EventEmitter<TeamMember[]>();
 
   constructor(
     private teamMemberService: TeamMemberService,
     public globals: Globals,
-  ) { }
+  ) {
+  }
 
-  ngOnInit() {
+  onSelectionChanged(row: TeamMember) {
+    this.selection.toggle(row);
+    this.teamMembersSelected.emit(this.selection.selected);
   }
 
   // method to know if all the checkboxes are selected, in order to know whether the master checkbox is checked or not
@@ -36,6 +40,7 @@ export class TeamMemberListComponent implements OnInit {
   // if the master checkbox is unchecked, then we uncheck the other checkboxes
   masterToggle() {
     this.isAllSelected() ? this.selection.clear() : this.teamMembers.forEach(row => this.selection.select(row));
+    this.teamMembersSelected.emit(this.selection.selected);
   }
 
   removeTeamMembers(): void {

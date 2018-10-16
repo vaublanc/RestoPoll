@@ -1,5 +1,23 @@
 <mat-list>
-  <mat-list-item>{{'RunningPolls' | translate: 'TeamFeature'}}</mat-list-item>
+  <mat-list-item>{{'OngoingPolls' | translate: 'TeamFeature'}}</mat-list-item>
+  <mat-grid-list cols="1" rowHeight="100px" gutterSize="10px">
+    <ng-container *ngIf="ongoingPolls && ongoingPolls.length">
+      <ng-container *ngFor="let poll of ongoingPolls">
+        <mat-grid-tile>
+          <button mat-raised-button
+                  class="poll"
+                  (click)="navigationService.navigate('/ongoingPoll/', poll.id)">
+                  <div>
+                    {{poll.name}}
+                  </div>
+                  <div>
+                    {{poll.teamName}}
+                  </div>
+          </button>
+        </mat-grid-tile>
+      </ng-container>
+    </ng-container>
+  </mat-grid-list>
   <mat-divider></mat-divider>
   <mat-list-item>{{'YourFavoritesPolls' | translate: 'TeamFeature'}}</mat-list-item>
     <app-poll-list [polls]="favoritePolls"></app-poll-list>

@@ -37,4 +37,8 @@ export class AppComponent implements OnInit, AfterViewInit {
       tap(isLoaded => this.isLoaded = isLoaded)
     ).subscribe();
   }
+
+  hideButton() {
+    this.globals.isHomePage = true;
+  }
 }

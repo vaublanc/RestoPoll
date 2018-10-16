@@ -3,10 +3,13 @@
       {{'WhoIsVoting' | translate: 'TeamFeature'}}
     </label>
     
-    <app-team-member-list [teamMembers]="teamMembers" [isTeamMemberPage]="false"></app-team-member-list>
+    <app-team-member-list [teamMembers]="teamMembers" 
+                          [isTeamMemberPage]="false"
+                          (teamMembersSelected)="teamMembersSelectedEventHandler($event)">
+  </app-team-member-list>
       
     <mat-dialog-actions>
-      <button mat-button [mat-dialog-close]="">
+      <button mat-button [mat-dialog-close]="selectedMembers">
         OK
       </button>
     

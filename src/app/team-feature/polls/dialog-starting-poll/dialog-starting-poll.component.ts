@@ -12,6 +12,7 @@ import { TeamMember } from '../../team-members/shared/teamMember';
 export class DialogStartingPollComponent implements OnInit {
 
   teamMembers: TeamMember[] = [];
+  selectedMembers: TeamMember[] = [];
 
   constructor(
     private teamMemberService: TeamMemberService,
@@ -26,6 +27,10 @@ export class DialogStartingPollComponent implements OnInit {
       this.teamMemberService.getTeamMembers(this.startingPoll.teamId).subscribe(
         teamMembersReturned => this.teamMembers = teamMembersReturned
       );
+    }
+
+    teamMembersSelectedEventHandler($event: any) {
+      this.selectedMembers = $event;
     }
 
 }

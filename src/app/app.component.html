@@ -11,8 +11,9 @@
 
 <div *ngIf="!globals.isHomePage">
   <button mat-raised-button
-  routerLink="/home-page"
-  class="HomePageButton">
+          routerLink="/home-page"
+          class="HomePageButton"
+          (click)="hideButton()">
   {{ 'BackToMenu' | translate: 'TeamFeature'}}
   </button>
 </div>

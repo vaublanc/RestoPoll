@@ -1,0 +1,19 @@
+@import "../../color";
+
+.poll {
+    background-color: $button-color;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    width:-webkit-fill-available;
+    max-width: 400px;
+    margin: 20px;
+    height: 100px;
+      &:hover{
+        background-color: $button-color-hover;
+      }
+}

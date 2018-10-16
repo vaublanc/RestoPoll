@@ -5,4 +5,5 @@ export interface Poll {
   name: string;
   nature: NatureEnum;
   teamId: string;
+  teamName: string;
 }

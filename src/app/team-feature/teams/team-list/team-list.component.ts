@@ -8,7 +8,6 @@ import { Router } from '@angular/router';
 import { Globals } from '../../../core/globals/globals';
 import { TeamService } from '../shared/team.service';
 import { NavigationService } from '../../../core/navigation/navigation.service';
-import { Constants } from '../../../shared/constants';
 import { HttpStatusService } from '../../../core/loader/http-status.service';
 
 @Component({
@@ -60,9 +59,10 @@ export class TeamListComponent implements OnInit, OnDestroy {
     // and then we add it to the current list. Otherwise, we do nothing
     dialogRef.afterClosed().subscribe(teamCreated => {
       if (teamCreated && teamCreated.name) {
-        this.addTeam(teamCreated);
-      }
-    });
+        this.teamService.addTeam(teamCreated).subscribe(
+          team => this.navigationService.navigate('/team/', team.id
+          ));
+      }});
   }
 
   getTeams(): void {
@@ -75,10 +75,5 @@ export class TeamListComponent implements OnInit, OnDestroy {
           this.addTeamButtonName = this.translateService.data.TeamFeature['CreateNewTeam'];
           }
       });
-  }
-
-  addTeam(teamToSave: Team): void {
-    this.teamService.addTeam(teamToSave)
-      .subscribe(teamCreated => this.navigationService.navigate('/team/', teamCreated.id));
   }
 }

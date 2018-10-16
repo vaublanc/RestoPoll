@@ -1,4 +1,5 @@
-import { TeamService } from './../../teams/shared/team.service';
+import { OngoingPoll } from './../shared/ongoing-poll';
+import { NavigationService } from './../../../core/navigation/navigation.service';
 import { OptionService } from './../../options/shared/option.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { Poll } from '../shared/poll';
@@ -7,6 +8,8 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { Globals } from 'src/app/core/globals/globals';
 import { MatDialog } from '@angular/material';
 import { DialogStartingPollComponent } from '../dialog-starting-poll/dialog-starting-poll.component';
+import { PollService } from '../shared/poll.service';
+import { UUID } from 'angular2-uuid';
 
 @Component({
   selector: 'app-poll-list',
@@ -19,14 +22,18 @@ export class PollListComponent implements OnInit {
   currentOptions: Option[];
   displayedColumns = ['select', 'name'];
   selection = new SelectionModel<Option>(true, []);
+  ongoingPoll: OngoingPoll;
 
   constructor(
     public dialog: MatDialog,
     private optionService: OptionService,
-    public globals: Globals
+    public globals: Globals,
+    private navigationService: NavigationService,
+    private pollService: PollService,
   ) { }
 
   ngOnInit() {
+
   }
 
   getOptions(poll: Poll): void {
@@ -59,5 +66,24 @@ export class PollListComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogStartingPollComponent, {
       data: poll
     });
+
+    dialogRef.afterClosed().subscribe(
+      selectedMembers => {
+        if (selectedMembers) {
+          // const ongoingPoll = new OngoingPoll(poll, this.selection.selected, selectedMembers);
+          const ongoingPoll = new OngoingPoll();
+          ongoingPoll.id = UUID.UUID();
+          ongoingPoll.name = poll.name;
+          ongoingPoll.members = selectedMembers;
+          ongoingPoll.options = this.selection.selected;
+          ongoingPoll.pollId = poll.id;
+          ongoingPoll.teamName = poll.teamName;
+
+          this.pollService.createOngoingPoll(ongoingPoll).subscribe(
+            id => this.navigationService.navigate('/ongoingPoll/', id)
+          );
+        }
+      }
+    );
   }
 }

@@ -10,7 +10,7 @@
         {{'SelectYourOptions' | translate: 'TeamFeature'}}
         <ng-container *ngIf="this.globals.isHomePage">
           <div class="teamName">
-              {{'Team' | translate: 'TeamFeature'}} {{poll.teamId | getPollTeamName | async}}
+              {{'Team' | translate: 'TeamFeature'}} {{poll.teamName}}
           </div>
         </ng-container>
       </mat-panel-description>

@@ -24,8 +24,9 @@ import { PollListComponent } from './polls/poll-list/poll-list.component';
 import { PollService } from './polls/shared/poll.service';
 import { OptionService } from './options/shared/option.service';
 import { HomePageComponent } from './home-page/home-page.component';
-import { GetPollTeamNamePipe } from './polls/shared/get-poll-team-name.pipe';
 import { DialogStartingPollComponent } from './polls/dialog-starting-poll/dialog-starting-poll.component';
+import { OngoingPollsComponent } from './polls/ongoing-polls/ongoing-polls.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 const MatModule = [
     MatButtonModule,
@@ -49,15 +50,16 @@ const MatModule = [
         TeamMemberListComponent,
         PollListComponent,
         HomePageComponent,
-        GetPollTeamNamePipe,
-        DialogStartingPollComponent
+        DialogStartingPollComponent,
+        OngoingPollsComponent,
     ],
     imports: [
         CommonModule,
         TeamsRoutingModule,
         MatModule,
         FormsModule,
-        SharedModule
+        SharedModule,
+        NgxChartsModule,
     ],
     exports: [
         DialogTeamCreationComponent,
@@ -66,7 +68,8 @@ const MatModule = [
         TeamListComponent,
         TeamMemberListComponent,
         PollListComponent,
-        GetPollTeamNamePipe
+        DialogStartingPollComponent,
+        OngoingPollsComponent
     ],
     providers: [
         TeamService,

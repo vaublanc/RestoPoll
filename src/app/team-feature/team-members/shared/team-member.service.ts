@@ -22,7 +22,7 @@ export class TeamMemberService {
   ) { }
 
   getTeamMembers(teamId: string): Observable<TeamMember[]> {
-    return this.http.get<TeamMember[]>(`${this.teamsUrl}/?teamId=${teamId}`, {headers: Constants.httpHeaderForLoading}).pipe(
+    return this.http.get<TeamMember[]>(`${this.teamsUrl}/?teamId=${teamId}`).pipe(
       catchError(this.exceptionService.handleError('GetTeamMembers', []))
     );
   }
