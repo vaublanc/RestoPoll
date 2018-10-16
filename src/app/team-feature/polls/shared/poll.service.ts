@@ -19,7 +19,6 @@ export class PollService {
   constructor(
     private http: HttpClient,
     private exceptionService: ExceptionService,
-    private teamService: TeamService
   ) { }
 
   getPolls(team: Team): Observable<Poll[]> {

@@ -7,7 +7,7 @@ import { OngoingPollsComponent } from './polls/ongoing-polls/ongoing-polls.compo
 const teamRoutes: Routes = [
     {path: 'home-page', component: HomePageComponent},
     {path: 'team/:id', component: TeamComponent},
-    {path: 'ongoingPoll/:id', component: OngoingPollsComponent}
+    {path: 'ongoingPoll/:id', component: OngoingPollsComponent},
   ];
 
 @NgModule({

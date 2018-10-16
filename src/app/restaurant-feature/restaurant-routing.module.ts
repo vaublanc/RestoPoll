@@ -1,10 +1,14 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { RestaurantComponent } from './restaurant/restaurant.component';
+import { Routes, RouterModule } from '@angular/router';
 
-@NgModule({
-    declarations: [],
-    imports: [ CommonModule ],
-    exports: [],
-    providers: [],
-})
+const routes: Routes = [
+    {path: 'restaurants/:id', component: RestaurantComponent}
+  ];
+
+  @NgModule({
+    imports: [ RouterModule.forRoot(routes) ],
+    exports: [ RouterModule ]
+  })
+
 export class RestaurantRoutingModule {}
