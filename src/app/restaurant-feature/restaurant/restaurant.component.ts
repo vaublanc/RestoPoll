@@ -21,11 +21,6 @@ export class RestaurantComponent implements OnInit {
 
   ngOnInit() {
     this.getRestaurant();
-    const mapProp = {
-      center: new google.maps.LatLng(18.5793, 73.8143),
-      zoom: 15,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
   }
 
   getRestaurant(): void {
