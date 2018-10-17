@@ -27,6 +27,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { DialogStartingPollComponent } from './polls/dialog-starting-poll/dialog-starting-poll.component';
 import { OngoingPollsComponent } from './polls/ongoing-polls/ongoing-polls.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { DialogAddOptionComponent } from './options/dialog-add-option/dialog-add-option.component';
 
 const MatModule = [
     MatButtonModule,
@@ -52,6 +53,7 @@ const MatModule = [
         HomePageComponent,
         DialogStartingPollComponent,
         OngoingPollsComponent,
+        DialogAddOptionComponent,
     ],
     imports: [
         CommonModule,
@@ -69,7 +71,8 @@ const MatModule = [
         TeamMemberListComponent,
         PollListComponent,
         DialogStartingPollComponent,
-        OngoingPollsComponent
+        OngoingPollsComponent,
+        DialogAddOptionComponent
     ],
     providers: [
         TeamService,
@@ -80,7 +83,8 @@ const MatModule = [
     entryComponents: [
         DialogTeamCreationComponent,
         DialogTeamSuppressionComponent,
-        DialogStartingPollComponent
+        DialogStartingPollComponent,
+        DialogAddOptionComponent
     ],
 })
 export class TeamsModule {}

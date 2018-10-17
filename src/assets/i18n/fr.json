@@ -18,7 +18,11 @@
         "YourTeams": "Vos groupes",
         "ConfirmTeamSupression": "Etes-vous sûr de vouloir supprimer le groupe",
         "NewTeamName": "Nom du nouveau groupe",
-        "WhoIsVoting": "Qui participe au sondage ?"
+        "WhoIsVoting": "Qui participe au sondage ?",
+        "CreateNewPoll": "Créer un nouveau sondage",
+        "AddOption": "Ajouter une option",
+        "NewOptionName": "Nom",
+        "NewOptionAdress": "Adresse"
     }
 
 }

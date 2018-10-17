@@ -1,3 +1,5 @@
+import { NatureEnum } from './../../../shared/nature-enum';
+import { DialogAddOptionComponent } from './../../options/dialog-add-option/dialog-add-option.component';
 import { OngoingPoll } from './../shared/ongoing-poll';
 import { NavigationService } from './../../../core/navigation/navigation.service';
 import { OptionService } from './../../options/shared/option.service';
@@ -19,7 +21,7 @@ import { UUID } from 'angular2-uuid';
 export class PollListComponent implements OnInit {
 
   @Input() polls: Poll[];
-  currentOptions: Option[];
+  currentOptions: Option[] = [];
   displayedColumns = ['select', 'name'];
   selection = new SelectionModel<Option>(true, []);
   ongoingPoll: OngoingPoll;
@@ -40,7 +42,9 @@ export class PollListComponent implements OnInit {
     this.optionService.getOptions(poll).subscribe(
       optionsReturned => {
         this.currentOptions = optionsReturned;
-        this.currentOptions.forEach(row => this.selection.select(row));
+        if (optionsReturned) {
+          this.currentOptions.forEach(row => this.selection.select(row));
+        }
       });
   }
 
@@ -62,7 +66,7 @@ export class PollListComponent implements OnInit {
     this.isAllSelected() ? this.selection.clear() : this.currentOptions.forEach(row => this.selection.select(row));
   }
 
-  openDialog(poll: Poll): void {
+  openDialogStartingPoll(poll: Poll): void {
     const dialogRef = this.dialog.open(DialogStartingPollComponent, {
       data: poll
     });
@@ -70,17 +74,30 @@ export class PollListComponent implements OnInit {
     dialogRef.afterClosed().subscribe(
       selectedMembers => {
         if (selectedMembers) {
-          // const ongoingPoll = new OngoingPoll(poll, this.selection.selected, selectedMembers);
-          const ongoingPoll = new OngoingPoll();
-          ongoingPoll.id = UUID.UUID();
-          ongoingPoll.name = poll.name;
-          ongoingPoll.members = selectedMembers;
-          ongoingPoll.options = this.selection.selected;
-          ongoingPoll.pollId = poll.id;
-          ongoingPoll.teamName = poll.teamName;
+          const ongoingPoll = new OngoingPoll(poll, this.selection.selected, selectedMembers);
 
           this.pollService.createOngoingPoll(ongoingPoll).subscribe(
             id => this.navigationService.navigate('/ongoingPoll/', id)
+          );
+        }
+      }
+    );
+  }
+
+  OpenDialogAddOption(poll: Poll): void {
+    const dialogRef = this.dialog.open(DialogAddOptionComponent, {
+      data: poll,
+      width: '600px'
+    });
+
+    dialogRef.afterClosed().subscribe(
+      optionReturned => {
+        if (optionReturned) {
+          this.optionService.addNewOption(optionReturned, poll.nature).subscribe(
+            optionCreated => {
+              this.currentOptions.push(optionCreated);
+              this.currentOptions = Object.assign([], this.currentOptions);
+            }
           );
         }
       }

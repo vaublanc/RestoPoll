@@ -1,5 +1,5 @@
 import { Option } from './option';
 
-export interface Restaurant extends Option {
+export class Restaurant extends Option {
   adress: string;
 }

@@ -1,0 +1,22 @@
+<label mat-dialog-title>
+  <div class="addOption">
+    <mat-form-field class="full-width">
+      <input matInput [(ngModel)] = "option.name" placeholder="{{'NewOptionName' | translate: 'TeamFeature'}}">
+    </mat-form-field>
+    <ng-container *ngIf="poll.nature === 'restaurant'">
+      <mat-form-field class="full-width">
+          <input matInput [(ngModel)] = "option.adress" placeholder="{{'NewOptionAdress' | translate: 'TeamFeature'}}">
+      </mat-form-field>
+    </ng-container>
+  </div>
+</label>
+
+<mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="option">
+    OK
+  </button>
+
+  <button mat-dialog-close>
+    {{'Cancel' | translate: 'TeamFeature'}}
+  </button>
+</mat-dialog-actions>

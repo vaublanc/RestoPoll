@@ -6,13 +6,14 @@ import { UUID } from 'angular2-uuid';
 
 export class OngoingPoll {
 
-    // constructor(poll: Poll, options: Option[], members: TeamMember[]) {
-    //     this.id = UUID.UUID();
-    //     this.name = poll.name;
-    //     this.members = members;
-    //     this.options = options;
-    //     this.teamId = poll.teamId;
-    // }
+    constructor(poll: Poll, options: Option[], members: TeamMember[]) {
+        this.id = UUID.UUID();
+        this.name = poll.name;
+        this.members = members;
+        this.options = options;
+        this.pollId = poll.id;
+        this.teamName = poll.teamName;
+    }
 
     id: string;
     name: string;

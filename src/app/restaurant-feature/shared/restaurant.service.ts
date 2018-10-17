@@ -21,5 +21,4 @@ export class RestaurantService {
       catchError(this.exceptionService.handleError<Restaurant>('GetRestaurant'))
     );
   }
-
 }

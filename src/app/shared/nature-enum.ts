@@ -1,3 +1,3 @@
 export enum NatureEnum {
-    Restaurant = 1,
+    Restaurant = 'restaurant',
 }
