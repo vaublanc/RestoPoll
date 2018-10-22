@@ -12,6 +12,7 @@ import { MatDialog } from '@angular/material';
 import { DialogStartingPollComponent } from '../dialog-starting-poll/dialog-starting-poll.component';
 import { PollService } from '../shared/poll.service';
 import { UUID } from 'angular2-uuid';
+import { Team } from '../../teams/shared/team';
 
 @Component({
   selector: 'app-poll-list',
@@ -21,10 +22,15 @@ import { UUID } from 'angular2-uuid';
 export class PollListComponent implements OnInit {
 
   @Input() polls: Poll[];
+  @Input() currentTeam: Team;
   currentOptions: Option[] = [];
   displayedColumns = ['select', 'name'];
   selection = new SelectionModel<Option>(true, []);
   ongoingPoll: OngoingPoll;
+  newPoll: Poll;
+  natureEnum = NatureEnum;
+  natureSelected: string;
+  isNewPollOpen: boolean;
 
   constructor(
     public dialog: MatDialog,
@@ -35,7 +41,7 @@ export class PollListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
+    this.newPoll = new Poll;
   }
 
   getOptions(poll: Poll): void {
@@ -102,5 +108,37 @@ export class PollListComponent implements OnInit {
         }
       }
     );
+  }
+
+  createNewPoll(): void {
+    this.newPoll.id = UUID.UUID();
+    this.newPoll.teamId = this.currentTeam.id;
+    this.newPoll.teamName = this.currentTeam.name;
+    this.newPoll.nature = NatureEnum[this.natureSelected];
+
+    this.pollService.createNewPoll(this.newPoll).subscribe(
+      newPoll => {
+        this.polls.push(newPoll);
+        this.polls = Object.assign([], this.polls);
+        this.isNewPollOpen = false;
+        this.newPoll = Object.assign({});
+        this.natureSelected = '';
+      }
+    );
+  }
+
+  goToOptionPage(option: Option, poll: Poll): void {
+    switch (poll.nature) {
+      case NatureEnum.Restaurant:
+        this.navigationService.navigate('/restaurants/', option.id);
+        break;
+
+      case NatureEnum.Movie:
+        this.navigationService.navigate('/movies/', option.id);
+        break;
+
+      default:
+        break;
+    }
   }
 }

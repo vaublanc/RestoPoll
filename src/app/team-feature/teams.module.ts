@@ -19,7 +19,8 @@ import { MatButtonModule,
     MatTableModule,
     MatExpansionModule,
     MatDividerModule,
-    MatListModule} from '@angular/material';
+    MatListModule,
+    MatSelectModule} from '@angular/material';
 import { PollListComponent } from './polls/poll-list/poll-list.component';
 import { PollService } from './polls/shared/poll.service';
 import { OptionService } from './options/shared/option.service';
@@ -39,7 +40,8 @@ const MatModule = [
     MatCheckboxModule,
     MatExpansionModule,
     MatDividerModule,
-    MatListModule
+    MatListModule,
+    MatSelectModule
   ];
 
 @NgModule({

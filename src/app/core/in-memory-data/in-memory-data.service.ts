@@ -76,6 +76,8 @@ export class InMemoryDataService implements InMemoryDbService {
       ]}
     ];
 
-    return {teams, teamMembers, polls, restaurants, ongoingPolls};
+    const movies = [];
+
+    return {teams, teamMembers, polls, restaurants, ongoingPolls, movies};
   }
 }

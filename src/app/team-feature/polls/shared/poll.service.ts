@@ -40,6 +40,12 @@ export class PollService {
     );
   }
 
+  createNewPoll(poll: Poll): Observable<Poll> {
+    return this.http.post<Poll>(this.pollsUrl, poll).pipe(
+      catchError(this.exceptionService.handleError<Poll>('createNewPoll'))
+    );
+  }
+
   getOngoingPoll(ongoingPollId: string): Observable<OngoingPoll> {
     return this.http.get<OngoingPoll>(`${this.ongoingPollUrl}/${ongoingPollId}`, {headers: Constants.httpHeaderForLoading}).pipe(
       catchError(this.exceptionService.handleError<OngoingPoll>('GetOngoingPoll'))

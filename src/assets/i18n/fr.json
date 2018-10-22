@@ -22,7 +22,11 @@
         "CreateNewPoll": "Créer un nouveau sondage",
         "AddOption": "Ajouter une option",
         "NewOptionName": "Nom",
-        "NewOptionAdress": "Adresse"
+        "NewOptionAdress": "Adresse",
+        "NewPollName": "Nom du sondage",
+        "Validate":  "Valider",
+        "SelectPollNature": "Nature du sondage",
+        "NewOptionTime": "Heure de la séance"
     }
 
 }

@@ -4,7 +4,7 @@
                         (closed)="emptyOptions()">
     <mat-expansion-panel-header>
       <mat-panel-title>
-        {{poll.name}}
+        {{poll.name}} : {{poll.nature}}
       </mat-panel-title>
       <mat-panel-description>
         {{'SelectYourOptions' | translate: 'TeamFeature'}}
@@ -36,7 +36,7 @@
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef>{{'Name' | translate: 'TeamFeature'}}</th>
           <td mat-cell *matCellDef="let option">
-            <button (click)="navigationService.navigate('/restaurants/', option.id)">{{option.name}}</button>
+            <button (click)="goToOptionPage(option, poll)">{{option.name}}</button>
           </td>
         </ng-container>
       
@@ -59,10 +59,23 @@
     </div>
   </mat-expansion-panel>
   <ng-container *ngIf="!globals.isHomePage">
-    <mat-expansion-panel>
+    <mat-expansion-panel [(expanded)]="isNewPollOpen">
       <mat-expansion-panel-header>
         {{'CreateNewPoll' | translate: 'TeamFeature'}}
       </mat-expansion-panel-header>
+      <mat-form-field class="">
+        <input matInput [(ngModel)] = "newPoll.name" placeholder="{{'NewPollName' | translate: 'TeamFeature'}}">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select placeholder="{{'SelectPollNature' | translate: 'TeamFeature'}}"
+                    [(ngModel)]="natureSelected">
+          <mat-option *ngFor="let nature of natureEnum | enumSelect" [value]="nature.key">{{nature.value}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button mat-raised-button
+        (click)="createNewPoll()">
+          {{'Validate' | translate: 'TeamFeature'}}
+        </button>
     </mat-expansion-panel>
   </ng-container>
 </mat-accordion>

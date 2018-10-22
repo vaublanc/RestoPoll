@@ -5,6 +5,7 @@ import { Option } from '../shared/option';
 import { NatureEnum } from 'src/app/shared/nature-enum';
 import { Poll } from '../../polls/shared/poll';
 import { UUID } from 'angular2-uuid';
+import { Movie } from '../shared/movie';
 
 @Component({
   selector: 'app-dialog-add-option',
@@ -23,13 +24,22 @@ export class DialogAddOptionComponent implements OnInit {
       switch (this.poll.nature) {
         case NatureEnum.Restaurant:
           this.option = new Restaurant();
-          this.option.id = UUID.UUID();
-          this.option.pollId = this.poll.id;
+          break;
+
+        case NatureEnum.Movie:
+          this.option = new Movie();
           break;
 
         default:
           break;
       }
+
+      this.initializeOption();
+    }
+
+    initializeOption(): void {
+      this.option.id = UUID.UUID();
+      this.option.pollId = this.poll.id;
     }
 
 

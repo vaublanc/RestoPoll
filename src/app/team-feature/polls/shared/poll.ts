@@ -1,6 +1,6 @@
 import {NatureEnum} from '../../../shared/nature-enum';
 
-export interface Poll {
+export class Poll {
   id: string;
   name: string;
   nature: NatureEnum;

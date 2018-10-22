@@ -13,6 +13,7 @@ import { NatureEnum } from 'src/app/shared/nature-enum';
 export class OptionService {
 
   restaurantUrl = 'api/restaurants';
+  movieUrl = 'api/movies';
   urlUsed: string;
 
   constructor(
@@ -27,6 +28,10 @@ export class OptionService {
         this.urlUsed = this.restaurantUrl;
         break;
 
+      case NatureEnum.Movie:
+        this.urlUsed = this.movieUrl;
+        break;
+
       default:
         return new Observable<Option[]>();
     }
@@ -34,14 +39,18 @@ export class OptionService {
       catchError(this.exceptionService.handleError<Option[]>('getOptions')));
   }
 
-  addNewOption(option: Option, optionNature: NatureEnum): Observable<any> {
+  addNewOption(option: Option, optionNature: NatureEnum): Observable<Option> {
     switch (optionNature) {
       case NatureEnum.Restaurant:
         this.urlUsed = this.restaurantUrl;
         break;
 
+      case NatureEnum.Movie:
+        this.urlUsed = this.movieUrl;
+        break;
+
       default:
-      return new Observable<any>();
+      return new Observable<Option>();
     }
     return this.http.post<Option>(`${this.urlUsed}`, option).pipe(
       catchError(this.exceptionService.handleError<Option>('addNewOption'))

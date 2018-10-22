@@ -8,6 +8,11 @@
           <input matInput [(ngModel)] = "option.adress" placeholder="{{'NewOptionAdress' | translate: 'TeamFeature'}}">
       </mat-form-field>
     </ng-container>
+    <ng-container *ngIf="poll.nature === 'movie'">
+      <mat-form-field class="full-width">
+          <input matInput [(ngModel)] = "option.time" placeholder="{{'NewOptionTime' | translate: 'TeamFeature'}}">
+      </mat-form-field>
+    </ng-container>
   </div>
 </label>
 
