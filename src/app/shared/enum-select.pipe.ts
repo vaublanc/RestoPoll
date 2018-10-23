@@ -6,6 +6,8 @@ import { isString } from 'util';
 })
 export class EnumSelectPipe implements PipeTransform {
 
+  // this pipe is not currently used but i keep it in case i need to implement it
+
   transform(value: any, args?: any): any {
     const keys = [];
     for (const enumMember in value) {

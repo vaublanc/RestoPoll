@@ -3,6 +3,7 @@ import { Globals } from './core/globals/globals';
 import { Constants } from './shared/constants';
 import { HttpStatusService } from './core/loader/http-status.service';
 import { startWith, delay, tap } from 'rxjs/operators';
+import { OptionNaturesService } from './core/option-natures/option-natures.service';
 
 @Component({
   selector: 'app-root',
@@ -18,12 +19,17 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   constructor(
     public globals: Globals,
-    public httpStatus: HttpStatusService
+    public httpStatus: HttpStatusService,
+    private optionNatureService: OptionNaturesService
   ) {}
 
   ngOnInit() {
     // this boolean controls the visibility of the "back to home page" button, that we obviously don't want to display on the home page.
     this.globals.isHomePage = true;
+    // we load all the natures possible for an option and keep it in memory
+    this.optionNatureService.getOptionNatures().subscribe(
+      naturesReturned => this.globals.optionNatureList = naturesReturned
+    );
   }
 
   // I faced some issues with the global loader. If i update "isLoaded" on the ngOnInit

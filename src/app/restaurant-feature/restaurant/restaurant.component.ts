@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RestaurantService } from '../shared/restaurant.service';
-import { Restaurant } from 'src/app/team-feature/options/shared/restaurant';
 import { Globals } from 'src/app/core/globals/globals';
+import { Restaurant } from '../shared/restaurant';
 
 @Component({
   selector: 'app-restaurant',

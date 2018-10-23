@@ -1,9 +1,8 @@
-import {NatureEnum} from '../../../shared/nature-enum';
-
 export class Poll {
   id: string;
   name: string;
-  nature: NatureEnum;
+  natureId: string;
+  natureName: string;
   teamId: string;
   teamName: string;
 }

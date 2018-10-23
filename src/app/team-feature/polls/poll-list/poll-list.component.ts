@@ -1,4 +1,4 @@
-import { NatureEnum } from './../../../shared/nature-enum';
+import { OptionNaturesService } from './../../../core/option-natures/option-natures.service';
 import { DialogAddOptionComponent } from './../../options/dialog-add-option/dialog-add-option.component';
 import { OngoingPoll } from './../shared/ongoing-poll';
 import { NavigationService } from './../../../core/navigation/navigation.service';
@@ -28,7 +28,6 @@ export class PollListComponent implements OnInit {
   selection = new SelectionModel<Option>(true, []);
   ongoingPoll: OngoingPoll;
   newPoll: Poll;
-  natureEnum = NatureEnum;
   natureSelected: string;
   isNewPollOpen: boolean;
 
@@ -38,6 +37,7 @@ export class PollListComponent implements OnInit {
     public globals: Globals,
     private navigationService: NavigationService,
     private pollService: PollService,
+    private optionNatureService: OptionNaturesService
   ) { }
 
   ngOnInit() {
@@ -45,13 +45,17 @@ export class PollListComponent implements OnInit {
   }
 
   getOptions(poll: Poll): void {
-    this.optionService.getOptions(poll).subscribe(
-      optionsReturned => {
-        this.currentOptions = optionsReturned;
-        if (optionsReturned) {
-          this.currentOptions.forEach(row => this.selection.select(row));
-        }
-      });
+    this.optionNatureService.getOptionNature(poll.natureId).subscribe(
+      natureReturned => {
+        this.optionService.getOptions(poll, natureReturned.route).subscribe(
+          optionsReturned => {
+            this.currentOptions = optionsReturned;
+            if (optionsReturned) {
+              this.currentOptions.forEach(row => this.selection.select(row));
+            }
+          });
+      }
+    );
   }
 
   emptyOptions(): void {
@@ -99,10 +103,14 @@ export class PollListComponent implements OnInit {
     dialogRef.afterClosed().subscribe(
       optionReturned => {
         if (optionReturned) {
-          this.optionService.addNewOption(optionReturned, poll.nature).subscribe(
-            optionCreated => {
-              this.currentOptions.push(optionCreated);
-              this.currentOptions = Object.assign([], this.currentOptions);
+          this.optionNatureService.getOptionNature(poll.natureId).subscribe(
+            natureReturned => {
+              this.optionService.addNewOption(optionReturned, natureReturned.route).subscribe(
+                optionCreated => {
+                  this.currentOptions.push(optionCreated);
+                  this.currentOptions = Object.assign([], this.currentOptions);
+                }
+              );
             }
           );
         }
@@ -114,31 +122,28 @@ export class PollListComponent implements OnInit {
     this.newPoll.id = UUID.UUID();
     this.newPoll.teamId = this.currentTeam.id;
     this.newPoll.teamName = this.currentTeam.name;
-    this.newPoll.nature = NatureEnum[this.natureSelected];
-
-    this.pollService.createNewPoll(this.newPoll).subscribe(
-      newPoll => {
-        this.polls.push(newPoll);
-        this.polls = Object.assign([], this.polls);
-        this.isNewPollOpen = false;
-        this.newPoll = Object.assign({});
-        this.natureSelected = '';
+    this.optionNatureService.getOptionNature(this.natureSelected).subscribe(
+      natureReturned => {
+        this.newPoll.natureId = natureReturned.id;
+        this.newPoll.natureName = natureReturned.name;
+        this.pollService.createNewPoll(this.newPoll).subscribe(
+          newPoll => {
+            this.polls.push(newPoll);
+            this.polls = Object.assign([], this.polls);
+            this.isNewPollOpen = false;
+            this.newPoll = Object.assign({});
+            this.natureSelected = '';
+          }
+        );
       }
     );
   }
 
   goToOptionPage(option: Option, poll: Poll): void {
-    switch (poll.nature) {
-      case NatureEnum.Restaurant:
-        this.navigationService.navigate('/restaurants/', option.id);
-        break;
-
-      case NatureEnum.Movie:
-        this.navigationService.navigate('/movies/', option.id);
-        break;
-
-      default:
-        break;
-    }
+    this.optionNatureService.getOptionNature(poll.natureId).subscribe(
+      natureReturned => {
+        this.navigationService.navigate(natureReturned.route, option.id);
+      }
+    );
   }
 }

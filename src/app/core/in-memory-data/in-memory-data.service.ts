@@ -1,7 +1,5 @@
-import { OngoingPoll } from './../../team-feature/polls/shared/ongoing-poll';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 import { UUID } from 'angular2-uuid';
-import { NatureEnum } from 'src/app/shared/nature-enum';
 
 // this service simulate a distant web database. This is our mock.
 
@@ -10,14 +8,23 @@ export class InMemoryDataService implements InMemoryDbService {
     const idSopra = UUID.UUID();
     const idFoot = UUID.UUID();
 
-    const teams = [
-      {id: idSopra, name: 'Sopra'},
-      {id: idFoot, name: 'Foot'}
-    ];
+    const idRestaurantNature = UUID.UUID();
+    const idMovieNature = UUID.UUID();
 
     const idNeymar = UUID.UUID();
     const idPeuplu = UUID.UUID();
     const idRajoute = UUID.UUID();
+
+    const idVM = UUID.UUID();
+    const idMM = UUID.UUID();
+
+    const id6sens = UUID.UUID();
+    const idPommeDepice = UUID.UUID();
+
+    const teams = [
+      {id: idSopra, name: 'Sopra'},
+      {id: idFoot, name: 'Foot'}
+    ];
 
     const teamMembers = [
       {id: idNeymar, firstName: 'Jean', lastName: 'Neymar', teamId: idSopra},
@@ -27,16 +34,16 @@ export class InMemoryDataService implements InMemoryDbService {
       {id: idRajoute, firstName: 'Jean', lastName: 'Rajoute', teamId: idSopra},
     ];
 
-    const idVM = UUID.UUID();
-    const idMM = UUID.UUID();
-
     const polls = [
-      {id: idVM, nature: NatureEnum.Restaurant, name: 'Vendredi Midi', isFavorite: true, teamId: idSopra, teamName: 'Sopra'},
-      {id: idMM, nature: NatureEnum.Restaurant, name: 'Mardi midi', isFavorite: false, teamId: idSopra, teamName: 'Sopra'}
+      {
+        id: idVM, natureId: idRestaurantNature, natureName: 'Restaurant', name: 'Vendredi Midi',
+        isFavorite: true, teamId: idSopra, teamName: 'Sopra'
+      },
+      {
+        id: idMM, natureId: idRestaurantNature, natureName: 'Restaurant', name: 'Mardi midi',
+        isFavorite: false, teamId: idSopra, teamName: 'Sopra'
+      }
     ];
-
-    const id6sens = UUID.UUID();
-    const idPommeDepice = UUID.UUID();
 
     const restaurants = [
       {id: id6sens, name: 'Le 6eme sens', adress: '2 Rue Thomas Corneille, 76000 Rouen', pollId: idVM},
@@ -78,6 +85,11 @@ export class InMemoryDataService implements InMemoryDbService {
 
     const movies = [];
 
-    return {teams, teamMembers, polls, restaurants, ongoingPolls, movies};
+    const natures = [
+      {id: idRestaurantNature, name: 'Restaurant', route: '/restaurants'},
+      {id: idMovieNature, name: 'Film', route: '/movies'},
+  ];
+
+    return {teams, teamMembers, polls, restaurants, ongoingPolls, movies, natures};
   }
 }

@@ -10,6 +10,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { LoadingInterceptorService } from './loader/loading-interceptor.service';
 import { Globals } from './globals/globals';
 import { MatProgressSpinnerModule } from '@angular/material';
+import { OptionNaturesService } from './option-natures/option-natures.service';
 
 const RxJS_Services = [LoadingInterceptorService];
 
@@ -49,7 +50,8 @@ export function setupTranslateFactory(service: TranslateService): Function {
       useFactory: setupTranslateFactory,
       deps: [TranslateService],
       multi: true
-    }
+    },
+    OptionNaturesService
   ],
 })
 export class CoreModule { }

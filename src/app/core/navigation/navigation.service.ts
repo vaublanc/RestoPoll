@@ -10,7 +10,7 @@ export class NavigationService {
 
   navigate(url: string, param?: string): void {
     if (param) {
-      this.router.navigate([url + param]);
+      this.router.navigate([url + '/' + param]);
     } else {
       this.router.navigate([url]);
     }
