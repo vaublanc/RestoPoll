@@ -10,6 +10,7 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { TeamsModule } from './team-feature/teams.module';
 import { RestaurantModule } from './restaurant-feature/restaurant.module';
 import { MovieModule } from './movie-feature/movie.module';
+import { LoginModule } from './login/login.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { MovieModule } from './movie-feature/movie.module';
     AppRoutingModule,
     TeamsModule,
     RestaurantModule,
-    MovieModule
+    MovieModule,
+    LoginModule
   ],
 
   bootstrap: [

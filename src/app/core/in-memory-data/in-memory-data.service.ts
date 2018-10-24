@@ -90,6 +90,8 @@ export class InMemoryDataService implements InMemoryDbService {
       {id: idMovieNature, name: 'Film', route: '/movies'},
   ];
 
-    return {teams, teamMembers, polls, restaurants, ongoingPolls, movies, natures};
+  const users = [{email: 'test', password: 'test', name: 'Vincent'}];
+
+    return {teams, teamMembers, polls, restaurants, ongoingPolls, movies, natures, users};
   }
 }
