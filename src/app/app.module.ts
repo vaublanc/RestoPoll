@@ -8,8 +8,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { TeamsModule } from './team-feature/teams.module';
-import { RestaurantModule } from './restaurant-feature/restaurant.module';
-import { MovieModule } from './movie-feature/movie.module';
+import { RestaurantModule } from './options-feature/restaurant-feature/restaurant.module';
+import { MovieModule } from './options-feature/movie-feature/movie.module';
+import { UserModule } from './user-feature/user.module';
+import { PollsModule } from './poll-feature/polls.module';
 
 @NgModule({
   declarations: [
@@ -23,9 +25,9 @@ import { MovieModule } from './movie-feature/movie.module';
     CoreModule,
     SharedModule,
     AppRoutingModule,
-    TeamsModule,
+    UserModule,
     RestaurantModule,
-    MovieModule
+    MovieModule,
   ],
 
   bootstrap: [

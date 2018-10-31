@@ -1,8 +1,7 @@
-import { TeamMemberService } from './../../team-members/shared/team-member.service';
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Poll } from '../../polls/shared/poll';
-import { TeamMember } from '../../team-members/shared/teamMember';
+import { TeamMember } from 'src/app/team-feature/team-members/shared/teamMember';
 
 @Component({
   selector: 'app-dialog-starting-poll',
@@ -15,7 +14,6 @@ export class DialogStartingPollComponent implements OnInit {
   selectedMembers: TeamMember[] = [];
 
   constructor(
-    private teamMemberService: TeamMemberService,
     public dialogRef: MatDialogRef<DialogStartingPollComponent>,
     @Inject(MAT_DIALOG_DATA) public startingPoll: Poll) {}
 
@@ -24,9 +22,7 @@ export class DialogStartingPollComponent implements OnInit {
     }
 
     ngOnInit(): void {
-      this.teamMemberService.getTeamMembers(this.startingPoll.teamId).subscribe(
-        teamMembersReturned => this.teamMembers = teamMembersReturned
-      );
+
     }
 
     teamMembersSelectedEventHandler($event: any) {

@@ -3,7 +3,7 @@ import { DialogAddOptionComponent } from './../../options/dialog-add-option/dial
 import { OngoingPoll } from './../shared/ongoing-poll';
 import { NavigationService } from './../../../core/navigation/navigation.service';
 import { OptionService } from './../../options/shared/option.service';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, AfterViewInit } from '@angular/core';
 import { Poll } from '../shared/poll';
 import { Option } from '../../options/shared/option';
 import { SelectionModel } from '@angular/cdk/collections';
@@ -12,7 +12,9 @@ import { MatDialog } from '@angular/material';
 import { DialogStartingPollComponent } from '../dialog-starting-poll/dialog-starting-poll.component';
 import { PollService } from '../shared/poll.service';
 import { UUID } from 'angular2-uuid';
-import { Team } from '../../teams/shared/team';
+import { Team } from 'src/app/team-feature/teams/shared/team';
+import { User } from 'src/app/user-feature/shared/user';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-poll-list',
@@ -21,8 +23,8 @@ import { Team } from '../../teams/shared/team';
 })
 export class PollListComponent implements OnInit {
 
-  @Input() polls: Poll[];
-  @Input() currentTeam: Team;
+  @Input() user: Observable<User[]>;
+  currentUser: User;
   currentOptions: Option[] = [];
   displayedColumns = ['select', 'name'];
   selection = new SelectionModel<Option>(true, []);
@@ -42,6 +44,11 @@ export class PollListComponent implements OnInit {
 
   ngOnInit() {
     this.newPoll = new Poll;
+    this.user.subscribe(
+      userReturned => {
+        this.currentUser = userReturned[0];
+      }
+    );
   }
 
   getOptions(poll: Poll): void {
@@ -76,23 +83,23 @@ export class PollListComponent implements OnInit {
     this.isAllSelected() ? this.selection.clear() : this.currentOptions.forEach(row => this.selection.select(row));
   }
 
-  openDialogStartingPoll(poll: Poll): void {
-    const dialogRef = this.dialog.open(DialogStartingPollComponent, {
-      data: poll
-    });
+  // openDialogStartingPoll(poll: Poll): void {
+  //   const dialogRef = this.dialog.open(DialogStartingPollComponent, {
+  //     data: poll
+  //   });
 
-    dialogRef.afterClosed().subscribe(
-      selectedMembers => {
-        if (selectedMembers) {
-          const ongoingPoll = new OngoingPoll(poll, this.selection.selected, selectedMembers);
+  //   dialogRef.afterClosed().subscribe(
+  //     selectedMembers => {
+  //       if (selectedMembers) {
+  //         const ongoingPoll = new OngoingPoll(poll, this.selection.selected, selectedMembers, );
 
-          this.pollService.createOngoingPoll(ongoingPoll).subscribe(
-            id => this.navigationService.navigate('/ongoingPoll/', id)
-          );
-        }
-      }
-    );
-  }
+  //         this.pollService.createOngoingPoll(ongoingPoll).subscribe(
+  //           id => this.navigationService.navigate('/ongoingPoll/', id)
+  //         );
+  //       }
+  //     }
+  //   );
+  // }
 
   OpenDialogAddOption(poll: Poll): void {
     const dialogRef = this.dialog.open(DialogAddOptionComponent, {
@@ -120,16 +127,16 @@ export class PollListComponent implements OnInit {
 
   createNewPoll(): void {
     this.newPoll.id = UUID.UUID();
-    this.newPoll.teamId = this.currentTeam.id;
-    this.newPoll.teamName = this.currentTeam.name;
     this.optionNatureService.getOptionNature(this.natureSelected).subscribe(
       natureReturned => {
         this.newPoll.natureId = natureReturned.id;
         this.newPoll.natureName = natureReturned.name;
-        this.pollService.createNewPoll(this.newPoll).subscribe(
-          newPoll => {
-            this.polls.push(newPoll);
-            this.polls = Object.assign([], this.polls);
+        this.currentUser.polls.push(this.newPoll);
+        // on ajoute un nouveau sondage à l'utilisateur. A noter que plus tard, on voudra ajouter le sondage dans une table
+        // qui ne dépend pas d'un utilisateur.
+        this.pollService.addNewPoll(this.currentUser).subscribe(
+          () => {
+            this.currentUser.polls = Object.assign([], this.currentUser.polls);
             this.isNewPollOpen = false;
             this.newPoll = Object.assign({});
             this.natureSelected = '';

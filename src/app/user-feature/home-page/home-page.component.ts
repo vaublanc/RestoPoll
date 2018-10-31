@@ -1,10 +1,13 @@
 import { Globals } from './../../core/globals/globals';
-import { PollService } from './../polls/shared/poll.service';
+import { PollService } from 'src/app/poll-feature/polls/shared/poll.service';
+import { User } from './../shared/user';
+import { OngoingPoll } from './../../poll-feature/polls/shared/ongoing-poll';
 import { Component, OnInit } from '@angular/core';
-import { Poll } from '../polls/shared/poll';
 import { Constants } from 'src/app/shared/constants';
-import { OngoingPoll } from '../polls/shared/ongoing-poll';
 import { NavigationService } from 'src/app/core/navigation/navigation.service';
+import { UserService } from '../shared/user.service';
+import { Observable } from 'rxjs';
+import { Poll } from 'src/app/poll-feature/polls/shared/poll';
 
 @Component({
   selector: 'app-home-page',
@@ -13,26 +16,26 @@ import { NavigationService } from 'src/app/core/navigation/navigation.service';
 })
 export class HomePageComponent implements OnInit {
 
-  favoritePolls: Poll[];
   ongoingPolls: OngoingPoll[];
+  currentUser: Observable<User[]>;
+  polls: Poll[];
 
   constructor(
     private pollService: PollService,
     private globals: Globals,
-    public navigationService: NavigationService
+    public navigationService: NavigationService,
+    private userService: UserService
   ) { }
 
   ngOnInit() {
+    // we don't have an authentication service yet. So for now, we simply get the first user as the currentUser
+    // currentUser is an array because we have used a filter to get the user,
+    // so even if we are expected one result, the function returns an array.
+    this.currentUser = this.userService.getUser();
+
     this.globals.title = Constants.homePageTitle;
     this.globals.isHomePage = true;
-    this.getFavoritePolls();
     this.getOngoingPolls();
-  }
-
-  getFavoritePolls(): void {
-    this.pollService.getFavoritePolls().subscribe(
-      pollsReturned => this.favoritePolls = pollsReturned
-    );
   }
 
   getOngoingPolls(): void {

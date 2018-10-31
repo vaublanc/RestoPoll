@@ -3,6 +3,4 @@ export class Poll {
   name: string;
   natureId: string;
   natureName: string;
-  teamId: string;
-  teamName: string;
 }

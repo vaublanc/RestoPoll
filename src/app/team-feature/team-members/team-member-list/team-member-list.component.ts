@@ -1,8 +1,8 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { TeamMemberService } from '../shared/team-member.service';
 import { TeamMember } from '../shared/teamMember';
 import { SelectionModel } from '@angular/cdk/collections';
 import { Globals } from 'src/app/core/globals/globals';
+import { TeamService } from '../../teams/shared/team.service';
 
 @Component({
   selector: 'app-team-member-list',
@@ -19,7 +19,7 @@ export class TeamMemberListComponent {
   @Output() teamMembersSelected = new EventEmitter<TeamMember[]>();
 
   constructor(
-    private teamMemberService: TeamMemberService,
+    private teamService: TeamService,
     public globals: Globals,
   ) {
   }
@@ -45,7 +45,7 @@ export class TeamMemberListComponent {
 
   removeTeamMembers(): void {
     this.selection.selected.forEach(
-      member => this.teamMemberService.removeTeamMembers(member).subscribe(
+      member => this.teamService.removeTeamMembers(member).subscribe(
         memberRemoved => {
           // mat-table works with reference of object, so we have to change it if we want the view to be notified
           this.teamMembers.splice(this.teamMembers.indexOf(memberRemoved), 1);

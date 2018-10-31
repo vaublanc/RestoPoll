@@ -1,0 +1,33 @@
+<mat-tab-group>
+
+  <mat-tab label="{{'OngoingPolls' | translate: 'TeamFeature'}}">
+    <mat-grid-list cols="1" rowHeight="100px" gutterSize="10px">
+      <ng-container *ngIf="ongoingPolls && ongoingPolls.length">
+        <ng-container *ngFor="let poll of ongoingPolls">
+          <mat-grid-tile>
+            <button mat-raised-button
+                    class="poll"
+                    (click)="navigationService.navigate('/ongoingPoll/', poll.id)">
+                    <div>
+                      {{poll.name}}
+                    </div>
+                    <div>
+                      {{poll.teamName}}
+                    </div>
+            </button>
+          </mat-grid-tile>
+        </ng-container>
+      </ng-container>
+    </mat-grid-list>
+  </mat-tab>
+
+  <mat-tab label="{{'YourPolls' | translate: 'TeamFeature'}}">
+    <app-poll-list [user]="currentUser"></app-poll-list>
+  </mat-tab>
+
+  <mat-tab label="{{'YourTeams' | translate: 'TeamFeature'}}">
+    <app-team-list></app-team-list>
+  </mat-tab>
+
+</mat-tab-group>
+

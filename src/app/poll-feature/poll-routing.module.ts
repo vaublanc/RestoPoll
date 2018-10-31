@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { TeamComponent } from './teams/team/team.component';
+import { OngoingPollsComponent } from './polls/ongoing-polls/ongoing-polls.component';
 
 const teamRoutes: Routes = [
-    {path: 'team/:id', component: TeamComponent},
+    {path: 'ongoingPoll/:id', component: OngoingPollsComponent},
   ];
 
 @NgModule({
@@ -16,4 +16,4 @@ const teamRoutes: Routes = [
     ],
     providers: [],
 })
-export class TeamsRoutingModule {}
+export class PollRoutingModule {}

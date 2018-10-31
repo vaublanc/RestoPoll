@@ -46,7 +46,8 @@ export class TeamListComponent implements OnInit, OnDestroy {
     // we immediatly create a new team with a blank name team
     this.newTeam = {
       id: UUID.UUID(),
-      name: ''
+      name: '',
+      teamMembers: []
     };
 
     // we pass the new created team to the modal

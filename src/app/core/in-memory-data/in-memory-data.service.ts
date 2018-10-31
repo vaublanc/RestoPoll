@@ -1,5 +1,7 @@
+import { TeamMember } from 'src/app/team-feature/team-members/shared/teamMember';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 import { UUID } from 'angular2-uuid';
+import { id } from '@swimlane/ngx-charts/release/utils';
 
 // this service simulate a distant web database. This is our mock.
 
@@ -14,6 +16,7 @@ export class InMemoryDataService implements InMemoryDbService {
     const idNeymar = UUID.UUID();
     const idPeuplu = UUID.UUID();
     const idRajoute = UUID.UUID();
+    const idNeplin = UUID.UUID();
 
     const idVM = UUID.UUID();
     const idMM = UUID.UUID();
@@ -22,27 +25,30 @@ export class InMemoryDataService implements InMemoryDbService {
     const idPommeDepice = UUID.UUID();
 
     const teams = [
-      {id: idSopra, name: 'Sopra'},
-      {id: idFoot, name: 'Foot'}
+      {id: idSopra, name: 'Sopra', teamMembers: [
+        {id: idNeymar, firstName: 'Jean', lastName: 'Neymar'},
+        {id: idPeuplu, firstName: 'Jean', lastName: 'Peuplu'},
+        {id: idRajoute, firstName: 'Jean', lastName: 'Rajoute'},
+      ]},
+      {id: idFoot, name: 'Foot', teamMembers: [
+        {id: idNeymar, firstName: 'Jean', lastName: 'Neymar'},
+        {id: idNeplin, firstName: 'Jean', lastName: 'Neplin'},
+      ]}
     ];
 
-    const teamMembers = [
-      {id: idNeymar, firstName: 'Jean', lastName: 'Neymar', teamId: idSopra},
-      {id: UUID.UUID(), firstName: 'Jean', lastName: 'Neymar', teamId: idFoot},
-      {id: idPeuplu, firstName: 'Jean', lastName: 'Peuplu', teamId: idSopra},
-      {id: UUID.UUID(), firstName: 'Jean', lastName: 'Néplin', teamId: idFoot},
-      {id: idRajoute, firstName: 'Jean', lastName: 'Rajoute', teamId: idSopra},
+    const users = [
+      {id: idNeymar, firstName: 'Jean', lastName: 'Neymar', polls: [
+        {id: idVM, natureId: idRestaurantNature, natureName: 'Restaurant', name: 'Vendredi Midi'},
+        {id: idMM, natureId: idRestaurantNature, natureName: 'Restaurant', name: 'Mardi midi'}
+      ]},
+      {id: idPeuplu, firstName: 'Jean', lastName: 'Peuplu', polls: []},
+      {id: idRajoute, firstName: 'Jean', lastName: 'Rajoute', polls: []},
+      {id: idNeplin, firstName: 'Jean', lastName: 'Neplin', polls: []},
     ];
 
     const polls = [
-      {
-        id: idVM, natureId: idRestaurantNature, natureName: 'Restaurant', name: 'Vendredi Midi',
-        isFavorite: true, teamId: idSopra, teamName: 'Sopra'
-      },
-      {
-        id: idMM, natureId: idRestaurantNature, natureName: 'Restaurant', name: 'Mardi midi',
-        isFavorite: false, teamId: idSopra, teamName: 'Sopra'
-      }
+      {id: idVM, natureId: idRestaurantNature, natureName: 'Restaurant', name: 'Vendredi Midi'},
+      {id: idMM, natureId: idRestaurantNature, natureName: 'Restaurant', name: 'Mardi midi'}
     ];
 
     const restaurants = [
@@ -90,6 +96,6 @@ export class InMemoryDataService implements InMemoryDbService {
       {id: idMovieNature, name: 'Film', route: '/movies'},
   ];
 
-    return {teams, teamMembers, polls, restaurants, ongoingPolls, movies, natures};
+    return {teams, polls, restaurants, ongoingPolls, movies, natures, users};
   }
 }

@@ -21,10 +21,7 @@
           </div>
     </mat-tab>
     <mat-tab label="Membres">
-      <app-team-member-list [teamMembers]="teamMembers" [isTeamMemberPage]="true"></app-team-member-list>
-    </mat-tab>
-    <mat-tab label="Sondages">
-      <app-poll-list [polls]="polls" [currentTeam]="currentTeam"></app-poll-list>
+      <app-team-member-list [teamMembers]="currentTeam.teamMembers" [isTeamMemberPage]="true"></app-team-member-list>
     </mat-tab>
   </mat-tab-group>
 </ng-container>

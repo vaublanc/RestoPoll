@@ -26,7 +26,8 @@
         "NewPollName": "Nom du sondage",
         "Validate":  "Valider",
         "SelectPollNature": "Nature du sondage",
-        "NewOptionTime": "Heure de la séance"
+        "NewOptionTime": "Heure de la séance",
+        "YourPolls": "Vos sondage"
     }
 
 }

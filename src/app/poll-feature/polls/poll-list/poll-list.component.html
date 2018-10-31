@@ -1,5 +1,6 @@
 <mat-accordion>
-  <mat-expansion-panel *ngFor="let poll of polls"
+  <ng-container *ngIf="currentUser">
+    <mat-expansion-panel *ngFor="let poll of currentUser.polls"
                         (opened)="getOptions(poll)"
                         (closed)="emptyOptions()">
     <mat-expansion-panel-header>
@@ -8,11 +9,6 @@
       </mat-panel-title>
       <mat-panel-description>
         {{'SelectYourOptions' | translate: 'TeamFeature'}}
-        <ng-container *ngIf="this.globals.isHomePage">
-          <div class="teamName">
-              {{'Team' | translate: 'TeamFeature'}} {{poll.teamName}}
-          </div>
-        </ng-container>
       </mat-panel-description>
     </mat-expansion-panel-header>
     <ng-container *ngIf="currentOptions && currentOptions.length">
@@ -58,24 +54,25 @@
       </ng-container>
     </div>
   </mat-expansion-panel>
-  <ng-container *ngIf="!globals.isHomePage">
-    <mat-expansion-panel [(expanded)]="isNewPollOpen">
-      <mat-expansion-panel-header>
-        {{'CreateNewPoll' | translate: 'TeamFeature'}}
-      </mat-expansion-panel-header>
-      <mat-form-field class="">
-        <input matInput [(ngModel)] = "newPoll.name" placeholder="{{'NewPollName' | translate: 'TeamFeature'}}">
-      </mat-form-field>
-      <mat-form-field>
-        <mat-select placeholder="{{'SelectPollNature' | translate: 'TeamFeature'}}"
-                    [(ngModel)]="natureSelected">
-          <mat-option *ngFor="let nature of globals.optionNatureList" [value]="nature.id">{{nature.name}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <button mat-raised-button
-        (click)="createNewPoll()">
-          {{'Validate' | translate: 'TeamFeature'}}
-        </button>
-    </mat-expansion-panel>
   </ng-container>
+
+  <mat-expansion-panel [(expanded)]="isNewPollOpen">
+    <mat-expansion-panel-header>
+      {{'CreateNewPoll' | translate: 'TeamFeature'}}
+    </mat-expansion-panel-header>
+    <mat-form-field>
+      <input matInput [(ngModel)] = "newPoll.name" placeholder="{{'NewPollName' | translate: 'TeamFeature'}}">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select placeholder="{{'SelectPollNature' | translate: 'TeamFeature'}}"
+                  [(ngModel)]="natureSelected">
+        <mat-option *ngFor="let nature of globals.optionNatureList" [value]="nature.id">{{nature.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-raised-button
+      (click)="createNewPoll()">
+        {{'Validate' | translate: 'TeamFeature'}}
+      </button>
+  </mat-expansion-panel>
+
 </mat-accordion>

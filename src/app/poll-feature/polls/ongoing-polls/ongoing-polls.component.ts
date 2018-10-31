@@ -3,7 +3,7 @@ import { OngoingPoll } from './../shared/ongoing-poll';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PollService } from '../shared/poll.service';
-import { TeamMember } from '../../team-members/shared/teamMember';
+import { TeamMember } from 'src/app/team-feature/team-members/shared/teamMember';
 
 @Component({
   selector: 'app-ongoing-polls',

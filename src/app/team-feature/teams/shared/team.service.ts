@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
 import { ExceptionService } from '../../../core/exceptions/exception.service';
 import { Constants } from '../../../shared/constants';
+import { TeamMember } from '../../team-members/shared/teamMember';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -60,6 +61,14 @@ export class TeamService {
     return this.http.get<Team>(`${this.teamsUrl}/${teamId}`).pipe(
       map(teamReturned => teamReturned.name),
       catchError(this.exceptionService.handleError<string>('getPollTeamName'))
+    );
+  }
+
+  removeTeamMembers(member: TeamMember): Observable<TeamMember> {
+    const deleteUrl = `${this.teamsUrl}/${member.id}`;
+    return this.http.delete(deleteUrl, httpOptions).pipe(
+      map(() => member),
+      catchError(this.exceptionService.handleError<TeamMember>('deleteTeamMember'))
     );
   }
 

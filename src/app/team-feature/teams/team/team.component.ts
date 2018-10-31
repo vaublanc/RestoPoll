@@ -10,9 +10,8 @@ import { DialogTeamSuppressionComponent } from '../dialog-team-suppression/dialo
 import { flatMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { TeamMember } from '../../team-members/shared/teamMember';
-import { TeamMemberService } from '../../team-members/shared/team-member.service';
-import { PollService } from '../../polls/shared/poll.service';
-import { Poll } from '../../polls/shared/poll';
+import { Poll } from 'src/app/poll-feature/polls/shared/poll';
+import { PollService } from 'src/app/poll-feature/polls/shared/poll.service';
 
 @Component({
   selector: 'app-team',
@@ -32,7 +31,6 @@ export class TeamComponent implements OnInit {
     public globals: Globals,
     private teamService: TeamService,
     private navigationService: NavigationService,
-    private teamMemberService: TeamMemberService,
     private pollService: PollService,
     private translateService: TranslateService
   ) {}
@@ -69,7 +67,6 @@ export class TeamComponent implements OnInit {
     this.teamService.getTeam(id).subscribe(teamReturned => {
       this.currentTeam = teamReturned;
       this.setTeamName();
-      this.getTeamMembers();
       this.getPolls();
     });
   }
@@ -77,12 +74,6 @@ export class TeamComponent implements OnInit {
   save(): void {
     this.teamService.updateTeam(this.currentTeam)
       .subscribe(() => this.setTeamName());
-  }
-
-  getTeamMembers(): void {
-    this.teamMemberService.getTeamMembers(this.currentTeam.id).subscribe(
-      teamMembersReturned => this.teamMembers = teamMembersReturned
-    );
   }
 
   getPolls(): void {
