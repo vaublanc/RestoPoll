@@ -7,11 +7,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { TeamsModule } from './team-feature/teams.module';
 import { RestaurantModule } from './options-feature/restaurant-feature/restaurant.module';
 import { MovieModule } from './options-feature/movie-feature/movie.module';
 import { UserModule } from './user-feature/user.module';
-import { PollsModule } from './poll-feature/polls.module';
 
 @NgModule({
   declarations: [

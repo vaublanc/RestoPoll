@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import { Constants } from '../../../shared/constants';
 import { catchError, map } from 'rxjs/operators';
 import { ExceptionService } from '../../../core/exceptions/exception.service';
-import { Team } from 'src/app/team-feature/teams/shared/team';
+import { Team } from '../../teams/shared/team';
 
 @Injectable()
 export class PollService {

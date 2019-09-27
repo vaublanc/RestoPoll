@@ -1,20 +1,18 @@
 import { OptionNaturesService } from './../../../core/option-natures/option-natures.service';
-import { DialogAddOptionComponent } from './../../options/dialog-add-option/dialog-add-option.component';
 import { OngoingPoll } from './../shared/ongoing-poll';
 import { NavigationService } from './../../../core/navigation/navigation.service';
-import { OptionService } from './../../options/shared/option.service';
 import { Component, OnInit, Input, OnChanges, AfterViewInit } from '@angular/core';
 import { Poll } from '../shared/poll';
-import { Option } from '../../options/shared/option';
 import { SelectionModel } from '@angular/cdk/collections';
 import { Globals } from 'src/app/core/globals/globals';
 import { MatDialog } from '@angular/material';
-import { DialogStartingPollComponent } from '../dialog-starting-poll/dialog-starting-poll.component';
 import { PollService } from '../shared/poll.service';
 import { UUID } from 'angular2-uuid';
-import { Team } from 'src/app/team-feature/teams/shared/team';
 import { User } from 'src/app/user-feature/shared/user';
 import { Observable } from 'rxjs';
+import { Option } from '../options/shared/option';
+import { OptionService } from '../options/shared/option.service';
+import { DialogAddOptionComponent } from '../options/dialog-add-option/dialog-add-option.component';
 
 @Component({
   selector: 'app-poll-list',

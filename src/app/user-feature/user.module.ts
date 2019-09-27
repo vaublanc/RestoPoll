@@ -1,3 +1,4 @@
+import { DialogAddOptionComponent } from './polls/options/dialog-add-option/dialog-add-option.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -8,18 +9,37 @@ import { MatGridListModule,
   MatListModule,
   MatTabsModule,
   MatTableModule,
-  MatButtonModule} from '@angular/material';
-import { TeamsModule } from '../team-feature/teams.module';
-import { PollsModule } from '../poll-feature/polls.module';
+  MatButtonModule,
+  MatInputModule,
+  MatSelectModule,
+  MatExpansionModule,
+  MatCheckboxModule,
+  MatDialogModule} from '@angular/material';
 import { UserService } from './shared/user.service';
+import { PollListComponent } from './polls/poll-list/poll-list.component';
+import { DialogStartingPollComponent } from './polls/dialog-starting-poll/dialog-starting-poll.component';
+import { OngoingPollsComponent } from './polls/ongoing-polls/ongoing-polls.component';
+import { PollService } from './polls/shared/poll.service';
+import { OptionService } from './polls/options/shared/option.service';
+import { DialogTeamSuppressionComponent } from './teams/dialog-team-suppression/dialog-team-suppression.component';
+import { DialogTeamCreationComponent } from './teams/dialog-team-creation/dialog-team-creation.component';
+import { TeamService } from './teams/shared/team.service';
+import { TeamMemberListComponent } from './team-members/team-member-list/team-member-list.component';
+import { TeamListComponent } from './teams/team-list/team-list.component';
+import { TeamComponent } from './teams/team/team.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 const MatModule = [
   MatGridListModule,
   MatListModule,
   MatTabsModule,
-  MatTableModule,
   MatButtonModule,
-  FormsModule
+  MatDialogModule,
+  MatTableModule,
+  MatCheckboxModule,
+  MatExpansionModule,
+  MatSelectModule,
+  MatInputModule,
 ];
 
 @NgModule({
@@ -27,20 +47,45 @@ const MatModule = [
     CommonModule,
     UserRoutingModule,
     MatModule,
+    FormsModule,
     SharedModule,
-    TeamsModule,
-    PollsModule
+    NgxChartsModule
   ],
   declarations: [
-    HomePageComponent
+    HomePageComponent,
+    PollListComponent,
+    DialogStartingPollComponent,
+    OngoingPollsComponent,
+    DialogAddOptionComponent,
+    DialogTeamCreationComponent,
+    DialogTeamSuppressionComponent,
+    TeamComponent,
+    TeamListComponent,
+    TeamMemberListComponent,
   ],
   exports: [
     HomePageComponent,
-    TeamsModule,
-    PollsModule
+    PollListComponent,
+    DialogStartingPollComponent,
+    OngoingPollsComponent,
+    DialogAddOptionComponent,
+    DialogTeamCreationComponent,
+    DialogTeamSuppressionComponent,
+    TeamComponent,
+    TeamListComponent,
+    TeamMemberListComponent,
   ],
   providers: [
-    UserService
+    UserService,
+    PollService,
+    OptionService,
+    TeamService
   ],
+  entryComponents: [
+    DialogStartingPollComponent,
+    DialogAddOptionComponent,
+    DialogTeamCreationComponent,
+    DialogTeamSuppressionComponent,
+  ]
 })
 export class UserModule { }

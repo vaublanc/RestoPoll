@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Poll } from '../../polls/shared/poll';
-import { TeamMember } from 'src/app/team-feature/team-members/shared/teamMember';
+import { TeamMember } from '../../team-members/shared/teamMember';
 
 @Component({
   selector: 'app-dialog-starting-poll',

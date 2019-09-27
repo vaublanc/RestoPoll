@@ -1,7 +1,5 @@
-import { TeamMember } from 'src/app/team-feature/team-members/shared/teamMember';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 import { UUID } from 'angular2-uuid';
-import { id } from '@swimlane/ngx-charts/release/utils';
 
 // this service simulate a distant web database. This is our mock.
 

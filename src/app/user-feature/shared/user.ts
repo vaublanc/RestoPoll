@@ -1,4 +1,4 @@
-import { Poll } from 'src/app/poll-feature/polls/shared/poll';
+import { Poll } from '../polls/shared/poll';
 
 export class User {
     id: string;

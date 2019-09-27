@@ -1,13 +1,13 @@
 import { Globals } from './../../core/globals/globals';
-import { PollService } from 'src/app/poll-feature/polls/shared/poll.service';
 import { User } from './../shared/user';
-import { OngoingPoll } from './../../poll-feature/polls/shared/ongoing-poll';
 import { Component, OnInit } from '@angular/core';
 import { Constants } from 'src/app/shared/constants';
 import { NavigationService } from 'src/app/core/navigation/navigation.service';
 import { UserService } from '../shared/user.service';
 import { Observable } from 'rxjs';
-import { Poll } from 'src/app/poll-feature/polls/shared/poll';
+import { OngoingPoll } from '../polls/shared/ongoing-poll';
+import { Poll } from '../polls/shared/poll';
+import { PollService } from '../polls/shared/poll.service';
 
 @Component({
   selector: 'app-home-page',

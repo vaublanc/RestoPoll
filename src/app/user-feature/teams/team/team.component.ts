@@ -10,8 +10,8 @@ import { DialogTeamSuppressionComponent } from '../dialog-team-suppression/dialo
 import { flatMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { TeamMember } from '../../team-members/shared/teamMember';
-import { Poll } from 'src/app/poll-feature/polls/shared/poll';
-import { PollService } from 'src/app/poll-feature/polls/shared/poll.service';
+import { Poll } from '../../polls/shared/poll';
+import { PollService } from '../../polls/shared/poll.service';
 
 @Component({
   selector: 'app-team',

@@ -1,8 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Option } from '../shared/option';
-import { Poll } from '../../polls/shared/poll';
 import { UUID } from 'angular2-uuid';
+import { Poll } from '../../shared/poll';
 
 @Component({
   selector: 'app-dialog-add-option',
